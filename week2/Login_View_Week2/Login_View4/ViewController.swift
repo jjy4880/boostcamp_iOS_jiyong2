@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+
 
 class ViewController: UIViewController , UITextFieldDelegate {
-
+    
     //MARK: id pwd 텍스트필드.
     @IBOutlet weak var idValue: UITextField!
     @IBOutlet weak var pwdValue: UITextField!
@@ -20,6 +22,12 @@ class ViewController: UIViewController , UITextFieldDelegate {
         idValue.delegate = self
         pwdValue.delegate = self
         
+        
+        
+    let loginButton = FBSDKLoginButton()
+        loginButton.frame = CGRect(x: 100, y: 460, width: 170, height: 30)
+                view.addSubview(loginButton)
+      
     }
     
    //MARK: UITextFieldDelegate
@@ -69,5 +77,33 @@ class ViewController: UIViewController , UITextFieldDelegate {
     }
     
     
-}
+    
+    func loginFacebook(_ sender: UIButton) {
+        
+        let fbLoginManager = FBSDKLoginManager()
+        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], from: self) { (result, error) in
+            if ( error == nil) {
+                let fbLoginresult : FBSDKLoginManagerLoginResult = result!
+                if(fbLoginresult.grantedPermissions.contains("email"))
+                {
+                    self.getFBUserData()
+                    
+                }
+            }
+        
+        }
+        
+    }
+    
+    func getFBUserData(){
+        if ((FBSDKAccessToken.current()) != nil ){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
+                if ( error == nil ) {
+                    print(result ?? "nil")
+                    self.performSegue(withIdentifier: "ToSettings", sender: self)
+                }
+            })
+        }
+    }
 
+}
