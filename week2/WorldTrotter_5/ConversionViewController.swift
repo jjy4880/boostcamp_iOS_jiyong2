@@ -118,15 +118,14 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         df.dateFormat = "HH"
         let time = Int(df.string(from: Date()))
         
-        if time! >= 18 {
-            self.view.backgroundColor = UIColor.darkGray
-        } else {
-            self.view.backgroundColor = UIColor.lightGray
+        if let timeCheck = time {
+            if timeCheck >= 18 {
+                self.view.backgroundColor = UIColor.darkGray
+            }else {
+                self.view.backgroundColor = UIColor.lightGray
+            }
         }
         
-        
-        
-        
     }
-    
 }
+
