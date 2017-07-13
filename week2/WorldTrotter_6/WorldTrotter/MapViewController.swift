@@ -60,6 +60,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate , MKMapView
         leadingConstraint.isActive = true
         trailingConstraint.isActive = true
         
+        //
+        let zoomButton: UIButton = UIButton(type: UIButtonType.roundedRect)
+        zoomButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)
+        zoomButton.backgroundColor = UIColor.green
+        zoomButton.setTitle("확대" , for: .normal)
+        zoomButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        zoomButton.addTarget(self, action: #selector(zoomLocation), for: .touchUpInside)
+        
+        view.addSubview(zoomButton)
+        
+        let leadingOfZoomButton = zoomButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        let bottomOfZoomButton = zoomButton.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
+        let widthOfZoomButton = zoomButton.widthAnchor.constraint(equalToConstant: zoomButton.bounds.width)
+        let heightOfZoomButton = zoomButton.heightAnchor.constraint(equalToConstant: zoomButton.bounds.height)
+        
+        leadingOfZoomButton.isActive = true
+        bottomOfZoomButton.isActive = true
+        widthOfZoomButton.isActive = true
+        heightOfZoomButton.isActive = true
     }
     
     
@@ -152,7 +172,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate , MKMapView
     
 
 
-
+    func zoomLocation() {
+        let userLocation = mapView.userLocation
+        let region = MKCoordinateRegionMakeWithDistance((userLocation.location?.coordinate)!, 200 , 200)
+        mapView.setRegion(region, animated: true)
+    }
     
     
     
