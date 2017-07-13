@@ -13,6 +13,12 @@ import UIKit
 class ConversionViewController: UIViewController, UITextFieldDelegate {
     
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("ConversionViewController loaded its view.")
+        }
+    
+    
     @IBOutlet weak var celsiusLabel: UILabel!
     var fahrenheitValue: Double? {
         didSet {
@@ -39,10 +45,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     }()
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        textField.delegate = self
-    }
+    
     
     
     
@@ -95,8 +98,36 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
 
         if (existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil) || replacementTextHasAlphabet != nil {
             return false
+            //알파벳을 담은 변수가 nil 이 아니면,, 값이 있다면 입력 X
+            
         } else {
             return true
         }
     }
+    
+    
+    
+    
+    //MARK: 은메달과제 , viewWillAppear
+    //      ConversionViewController가 호출될 때 배경색을 갱신해야한다.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
+        //MARK : 현재 시간을 가져오기 위한 구문 , time 은 현재 시간을 갖는다 (14시 -> 14)
+        let df = DateFormatter()
+        df.dateFormat = "HH"
+        let time = Int(df.string(from: Date()))
+        
+        if time! >= 18 {
+            self.view.backgroundColor = UIColor.darkGray
+        } else {
+            self.view.backgroundColor = UIColor.lightGray
+        }
+        
+        
+        
+        
+    }
+    
 }
