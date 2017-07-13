@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController , UIImagePickerControllerDelegate , UINavigationControllerDelegate , UITextFieldDelegate {
+class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     
     //MARK: Properties
@@ -16,12 +16,10 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
     var name: String?
     
     //UI를 구성하는 id , pw , pwd 입력을 받고 체크하기위한 텍스트필드 , 사진을 저장할 수 있는 이미지뷰.
-   
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var pwTextField: UITextField!
     @IBOutlet weak var pwCheckTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
-    
     @IBOutlet weak var textView: UITextView!
     
     
@@ -33,9 +31,6 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
         idTextField.delegate = self
         pwTextField.delegate = self
         pwCheckTextField.delegate = self
-        
-        
-        
     }
 
     //cancel 버튼 입력 시 dismiss //화면 모달 역방향.
@@ -56,7 +51,6 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
             print("PW is nil")
             return
         }
-               
         guard let pwCheck = pwCheckTextField.text else {
             print("pwCheck is nil")
             return
@@ -108,7 +102,7 @@ class SignUpViewController: UIViewController , UIImagePickerControllerDelegate ,
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
        
         guard  let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage else {
-             print("ImageFile not Found")
+            print("ImageFile not Found")
             return
         }
         //이미지 뷰에 내가 변경한 이미지를 저장.
