@@ -28,8 +28,8 @@ class ViewController: UIViewController , UITextFieldDelegate, FBSDKLoginButtonDe
         super.viewDidLoad()
         idValue.delegate = self
         pwdValue.delegate = self
-        
-        fbLoginButton.delegate = self
+        //facebook 이 두번 열리는 과정? 추측.
+        //fbLoginButton.delegate = self
     }
     
    //MARK: UITextFieldDelegate
@@ -56,28 +56,21 @@ class ViewController: UIViewController , UITextFieldDelegate, FBSDKLoginButtonDe
     //MARK: 함수 - Sign in 버튼
     @IBAction func signinPressed(_ sender: UIButton) {
         
-        if let id = idValue.text , let pw = pwdValue.text {
-           // 입력받은 id , pw 를 string 길이로 체크했을 때 공백도 스트링카운트로 체크되어 오류를 범할 수 있음.
-            //if (id.characters.count != 0) && (pw.characters.count != 0) {
-            if id != "" && pw != ""{
-        print("touch up inside - sign in")
-        print("ID : \(id) , PW: \(pw)")
-        } else {
-            print("다시 입력 해주세요.")
+        guard let id = idValue.text, let pw = pwdValue.text else {
+            print("다시 입력해주세요.")
+            return
         }
+        
+        if !id.isEmpty && !pw.isEmpty {
+            print("touch up inside - sign in")
+            print("ID: \(id) , PW: \(pw)")
         }
     }
     
     //MARK: 함수 - Sign up 버튼
     @IBAction func signupPressed(_ sender: UIButton) {
         print("touch up inside - sign up")
-           /*
-        guard let rvc = self.storyboard?.instantiateViewController(withIdentifier: "RVC") as? SignUpViewController else { return }
         
-        
-        rvc.name = self.loginName
-        self.present(rvc,animated: true)
-        */
     }
     
     //MARK: 뷰를 클릭했을 때 키보드 숨기기.
@@ -87,9 +80,9 @@ class ViewController: UIViewController , UITextFieldDelegate, FBSDKLoginButtonDe
     
     
 
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult?, error: Error!)
-    {
-        if(result?.token == nil){
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult?, error: Error!) {
+        
+        if(result?.token == nil) {
             return
         }
         let login: FBSDKLoginManager = FBSDKLoginManager()
@@ -129,7 +122,7 @@ class ViewController: UIViewController , UITextFieldDelegate, FBSDKLoginButtonDe
                 }
             }
         })
-        //print(result.token.tokenString)
+
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
