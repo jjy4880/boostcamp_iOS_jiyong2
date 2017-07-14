@@ -61,7 +61,6 @@
                                         </state>
                                         <connections>
                                             <action selector="signupPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OE5-1D-Sy7"/>
-                                            <segue destination="TNj-zE-FoM" kind="presentation" id="lRp-wy-wTM"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -110,7 +109,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="ue4-jR-kiJ">
             <objects>
-                <viewController id="TNj-zE-FoM" customClass="SignUpViewController" customModule="Login_View4" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RVC" id="TNj-zE-FoM" customClass="SignUpViewController" customModule="Login_View4" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kfx-sI-5c3"/>
                         <viewControllerLayoutGuide type="bottom" id="9Dc-G7-CrH"/>
