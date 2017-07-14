@@ -26,8 +26,13 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // delegate선언.
+        guard let userName = name else {
+            print("name 값 넘어오지 않음.")
+            return
+        }
         
+        idTextField.text = userName
+        // delegate선언.
         idTextField.delegate = self
         pwTextField.delegate = self
         pwCheckTextField.delegate = self
