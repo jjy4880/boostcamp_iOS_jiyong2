@@ -104,4 +104,9 @@ class ItemsViewController: UITableViewController {
             setEditing(true, animated: true)
         }
     }
+    // ch10 동메달과제
+    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Remove"
+    }
+    
 }
