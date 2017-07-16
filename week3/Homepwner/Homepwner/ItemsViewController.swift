@@ -12,8 +12,8 @@ import UIKit
 
 class ItemsViewController: UITableViewController {
     var itemStore: ItemStore!
-    var expensiveItem = [Item]()
-    var cheapItem = [Item]()
+    var expensiveItem = [Item?]()
+    var cheapItem = [Item?]()
     let sectionArray = ["고가", "저가"]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,20 @@ class ItemsViewController: UITableViewController {
         
         // 아이템 리스트를 초기화 하고 가격대별로 구분한다.
         initializeDictionary()
+        addLastRow()
+        
     }
+    // 은메달 과제.
+    func addLastRow() {
+        expensiveItem.append(nil)
+        cheapItem.append(nil)
+        dump(expensiveItem)
+        dump(cheapItem)
+        print(expensiveItem.count)
+        print(cheapItem.count)
+    }
+
+    
     
     func initializeDictionary(){
         let item2 = itemStore.allItems
@@ -34,8 +47,6 @@ class ItemsViewController: UITableViewController {
                 cheapItem.append(item2[i])
             }
         }
-        
-        
     }
     
     // TableView에 필요한 정보를 넘겨주기위한 메서드 , 테이블뷰의 행 수 , 행 내용
@@ -59,18 +70,28 @@ class ItemsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 재사용식별자의 셀인지 아닌지 확인하기 위해 Queue를 검사.
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
-        
-        
-        // Item에 n번째 항목의 설명을 n과 row와 일치하는 셀의 텍스트로 설정한다.
-        // 이 셀은 테이블 뷰 n번째 행에 나타난다.
         if indexPath.section == 0 {
-            cell.textLabel?.text = expensiveItem[indexPath.row].name
-            cell.detailTextLabel?.text = "\(expensiveItem[indexPath.row].valueInDollars)"
-            return cell
+            
+            // 은메달 과제.
+            guard let checkedItem = expensiveItem[indexPath.row] else {
+                cell.textLabel?.text = "No More Items!"
+                cell.detailTextLabel?.text = ""
+                return cell
+            }
+                cell.textLabel?.text = checkedItem.name
+                cell.detailTextLabel?.text = "\(checkedItem.valueInDollars)"
+                return cell
+            
         } else {
-            cell.textLabel?.text = cheapItem[indexPath.row].name
-            cell.detailTextLabel?.text = "\(cheapItem[indexPath.row].valueInDollars)"
-            return cell
+            if let checkedItem = cheapItem[indexPath.row] {
+                cell.textLabel?.text = checkedItem.name
+                cell.detailTextLabel?.text = "\(checkedItem.valueInDollars)"
+                return cell
+            } else {
+                cell.textLabel?.text = "No More Items!"
+                cell.detailTextLabel?.text = ""
+                return cell
+            }
         }
     }
     
