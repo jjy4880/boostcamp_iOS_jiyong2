@@ -249,9 +249,9 @@ class ItemsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
         
         if proposedDestinationIndexPath == IndexPath(row: expensiveItem.count - 1, section: 0) {
-            return IndexPath(row: expensiveItem.count - 2, section: 0)
+            return sourceIndexPath
         } else if proposedDestinationIndexPath == IndexPath(row: cheapItem.count - 1, section: 1){
-            return IndexPath(row: cheapItem.count - 2, section: 1)
+            return sourceIndexPath
         } else {
             return proposedDestinationIndexPath
         }
