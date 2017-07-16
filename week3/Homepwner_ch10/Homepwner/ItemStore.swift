@@ -14,6 +14,8 @@ class ItemStore {
     // Item객체를 배열로 갖는다.
     var allItems = [Item]()
     
+
+    
     // 새 Item을 만들고 반환한다.
     func createItem() -> Item {
         let newItem = Item(random: true)
@@ -22,7 +24,6 @@ class ItemStore {
         return newItem
     }
     
-    // 제거하는 메서드
     func removeItem(item: Item) {
         if let index = allItems.index(of: item) {
             allItems.remove(at: index)
@@ -30,13 +31,12 @@ class ItemStore {
     }
     
     func moveItemAtIndex(fromIndex: Int, toIndex: Int) {
+        
         if fromIndex == toIndex {
             return
         }
-        // movedItem 옮길 객체를 저장
         let movedItem = allItems[fromIndex]
         allItems.remove(at: fromIndex)
         allItems.insert(movedItem, at: toIndex)
     }
-
-}
+  }

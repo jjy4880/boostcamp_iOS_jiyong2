@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE14DA521F1B57E400F9B1E9 /* sky.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CE14DA511F1B57E400F9B1E9 /* sky.jpeg */; };
 		CE8C44E61F18B5D20063C920 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C44E51F18B5D20063C920 /* AppDelegate.swift */; };
 		CE8C44EB1F18B5D20063C920 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8C44E91F18B5D20063C920 /* Main.storyboard */; };
 		CE8C44ED1F18B5D20063C920 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE8C44EC1F18B5D20063C920 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE14DA511F1B57E400F9B1E9 /* sky.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sky.jpeg; sourceTree = "<group>"; };
 		CE8C44E21F18B5D20063C920 /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE8C44E51F18B5D20063C920 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE8C44EA1F18B5D20063C920 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		CE8C44E41F18B5D20063C920 /* Homepwner */ = {
 			isa = PBXGroup;
 			children = (
+				CE14DA511F1B57E400F9B1E9 /* sky.jpeg */,
 				CE8C44E51F18B5D20063C920 /* AppDelegate.swift */,
 				CE8C44F71F18B6AA0063C920 /* ItemsViewController.swift */,
 				CE8C44F91F18B7850063C920 /* Item.swift */,
@@ -133,6 +136,7 @@
 				CE8C44F01F18B5D20063C920 /* LaunchScreen.storyboard in Resources */,
 				CE8C44ED1F18B5D20063C920 /* Assets.xcassets in Resources */,
 				CE8C44EB1F18B5D20063C920 /* Main.storyboard in Resources */,
+				CE14DA521F1B57E400F9B1E9 /* sky.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +314,7 @@
 				CE8C44F61F18B5D20063C920 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
