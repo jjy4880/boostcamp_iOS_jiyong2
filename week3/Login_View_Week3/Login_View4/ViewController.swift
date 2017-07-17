@@ -20,6 +20,8 @@ struct FacebookUserInfo {
 
 class ViewController: UIViewController , UITextFieldDelegate, FBSDKLoginButtonDelegate {
     
+    
+    
     @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
     var userInfo: FacebookUserInfo? = nil
     var loginManager = FBSDKLoginManager()
@@ -59,8 +61,7 @@ class ViewController: UIViewController , UITextFieldDelegate, FBSDKLoginButtonDe
     
     //MARK: 함수 - Sign in 버튼 , id 넘겨주기
     @IBAction func signinPressed(_ sender: UIButton) {
-        
-        guard let id = idValue.text, let pw = pwdValue.text else {
+            guard let id = idValue.text, let pw = pwdValue.text else {
             print("다시 입력해주세요.")
             return
         }

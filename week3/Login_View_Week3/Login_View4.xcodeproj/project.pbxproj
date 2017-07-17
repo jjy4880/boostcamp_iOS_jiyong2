@@ -13,6 +13,7 @@
 		CE0923641F0943E30022FE3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0923631F0943E30022FE3A /* Assets.xcassets */; };
 		CE0923671F0943E30022FE3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0923651F0943E30022FE3A /* LaunchScreen.storyboard */; };
 		CE09236F1F0944CC0022FE3A /* korea.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE09236E1F0944CC0022FE3A /* korea.jpg */; };
+		CE8B71FA1F1CA25000B91FD0 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8B71F91F1CA25000B91FD0 /* MyButton.swift */; };
 		CED74B5C1F152BF700D21ACF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED74B5B1F152BF700D21ACF /* FBSDKLoginKit.framework */; };
 		CED74B5F1F152EF700D21ACF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED74B5D1F152EF700D21ACF /* FBSDKCoreKit.framework */; };
 		CED74B601F152EF700D21ACF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED74B5E1F152EF700D21ACF /* FBSDKShareKit.framework */; };
@@ -30,6 +31,7 @@
 		CE0923681F0943E30022FE3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE09236E1F0944CC0022FE3A /* korea.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = korea.jpg; sourceTree = "<group>"; };
 		CE89AF641F15F71000ED33F5 /* Login_View4-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Login_View4-Bridging-Header.h"; sourceTree = "<group>"; };
+		CE8B71F91F1CA25000B91FD0 /* MyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 		CED74B5B1F152BF700D21ACF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-4.24.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		CED74B5D1F152EF700D21ACF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-4.24.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		CED74B5E1F152EF700D21ACF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-4.24.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 		CE09235B1F0943E30022FE3A /* Login_View4 */ = {
 			isa = PBXGroup;
 			children = (
+				CE8B71F91F1CA25000B91FD0 /* MyButton.swift */,
 				CE09236E1F0944CC0022FE3A /* korea.jpg */,
 				CE09235C1F0943E30022FE3A /* AppDelegate.swift */,
 				CE09235E1F0943E30022FE3A /* ViewController.swift */,
@@ -178,6 +181,7 @@
 			files = (
 				CEDD7B931F11148F00DB6C6A /* SignUpViewController.swift in Sources */,
 				CE09235F1F0943E30022FE3A /* ViewController.swift in Sources */,
+				CE8B71FA1F1CA25000B91FD0 /* MyButton.swift in Sources */,
 				CE09235D1F0943E30022FE3A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
