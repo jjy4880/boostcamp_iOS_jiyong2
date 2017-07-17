@@ -97,7 +97,7 @@ class ItemsViewController: UITableViewController {
                 cell.backgroundColor = UIColor.red
                 cell.textLabel?.font = UIFont(name: "Avenir", size: 20)
                 cell.textLabel?.text = checkedItem.name
-                cell.detailTextLabel?.text = "\(checkedItem.valueInDollars)"
+                cell.detailTextLabel?.text = "$\(checkedItem.valueInDollars)"
                 return cell
             
         } else {
@@ -105,7 +105,7 @@ class ItemsViewController: UITableViewController {
                 cell.backgroundColor = UIColor.green
                 cell.textLabel?.font = UIFont(name: "Avenir", size: 20)
                 cell.textLabel?.text = checkedItem.name
-                cell.detailTextLabel?.text = "\(checkedItem.valueInDollars)"
+                cell.detailTextLabel?.text = "$\(checkedItem.valueInDollars)"
                 return cell
             } else {
                 cell.textLabel?.text = "No More Items!"
