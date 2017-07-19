@@ -11,32 +11,27 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 
 
-
-struct FacebookUserInfo {
-    let facebookUserID: String?
-    let facebookUserName: String?
-}
-
-
 class ViewController: UIViewController , UITextFieldDelegate, FBSDKLoginButtonDelegate {
     
-    @IBOutlet weak var myButtons: MyButtons!
-    var checkOnOff = true
-    @IBOutlet weak var controlButton: UIButton!
-    
-    @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
-    var userInfo: FacebookUserInfo? = nil
-    var loginManager = FBSDKLoginManager()
     @IBOutlet weak var idValue: UITextField!
     @IBOutlet weak var pwdValue: UITextField!
+    @IBOutlet weak var controlButton: UIButton!
+    @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
+    @IBOutlet weak var myButtons: MyButtons!
+    
+    
+    var loginManager = FBSDKLoginManager()
+    var checkOnOff = true
+    var userID: String?
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         idValue.delegate = self
         pwdValue.delegate = self
+       
         //FBSDKLoginButton 쓰면 로그인 결과 상태를 알아서 처리해주기 때문에 기존에있던 코드가 로그인하는 과정을 2번반복하였다.
         fbLoginButton.delegate = self
+        
         //로그인상태 초기화.
         loginManager.logOut()
     }
@@ -44,14 +39,14 @@ class ViewController: UIViewController , UITextFieldDelegate, FBSDKLoginButtonDe
   
    //MARK: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let id = idValue.text, let pw = pwdValue.text else {
+            print("다시 입력해주세요")
+            return true
+        }
         
-        if let id = idValue.text , let pw = pwdValue.text {
-            if id != "" && pw != "" {
-                print("touch up inside - sign in")
-                print("ID : \(id) , PW: \(pw)")
-            } else {
-                print("다시 입력 해주세요.")
-            }
+        if !id.isEmpty && !pw.isEmpty {
+            print("touch up inside - sign in")
+            print("ID : \(id) , PW: \(pw)")
         }
         //TextField id와 pwd 입력 후. Enter 누르면 키보드 사라짐.
         textField.resignFirstResponder()
@@ -60,7 +55,7 @@ class ViewController: UIViewController , UITextFieldDelegate, FBSDKLoginButtonDe
     
     //MARK: 함수 - Sign in 버튼 , id 넘겨주기
     @IBAction func signinPressed(_ sender: UIButton) {
-            guard let id = idValue.text, let pw = pwdValue.text else {
+        guard let id = idValue.text, let pw = pwdValue.text else {
             print("다시 입력해주세요.")
             return
         }
@@ -75,10 +70,7 @@ class ViewController: UIViewController , UITextFieldDelegate, FBSDKLoginButtonDe
     @IBAction func signupPressed(_ sender: UIButton) {
         print("touch up inside - sign up")
         self.presentNextView(id: idValue.text)
-        
     }
-    
-    
     
     //MARK: 뷰를 클릭했을 때 키보드 숨기기.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -93,7 +85,6 @@ class ViewController: UIViewController , UITextFieldDelegate, FBSDKLoginButtonDe
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         
     }
-    
     
     func facebookUserDataParsing() {
         let parameters = ["fields": "email, name"]
@@ -114,30 +105,26 @@ class ViewController: UIViewController , UITextFieldDelegate, FBSDKLoginButtonDe
             // Handle vars
             if let result = result as? [String: String],
                let email: String = result["email"],
-               let name: String = result["name"]
-            {
-                print("name: \(name)")
-                print("facebookID: \(email)")
-                
+               let name: String = result["name"] {
+                print("name: \(name) \n facebookID: \(email)")
                 //initialize info
-                self.userInfo = FacebookUserInfo(facebookUserID: email, facebookUserName: name)
-                self.presentNextView(id: self.userInfo?.facebookUserID)
+                self.userID = email
+                self.presentNextView(id: self.userID)
             }
-        } // endofFBSDKGraphRequest
-    } // endoffacebookUserDataParsing()
+        }
+    }
     
-   
     // facebook User정보 넘겨주기.
-    func presentNextView(id: String?){
-
+    func presentNextView(id: String?) {
         guard let rvc = self.storyboard?.instantiateViewController(withIdentifier: "RVC") as? SignUpViewController else {
             return
         }
-        guard let userID =  id else {
-            print("id값 없다.")
+        guard let userID = id else {
+            print("ID 다시 입력해 주세요.")
             return
         }
-        rvc.name = userID
+        
+        rvc.facebookUserID = userID
         self.present(rvc, animated: true)
     }
 

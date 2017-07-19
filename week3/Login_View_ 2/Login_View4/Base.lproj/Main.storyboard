@@ -43,6 +43,10 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Ptu-LQ-LsH" firstAttribute="leading" secondItem="Km0-sl-R97" secondAttribute="leading" id="HLu-31-mDO"/>
+                                    <constraint firstItem="Ptu-LQ-LsH" firstAttribute="trailing" secondItem="Km0-sl-R97" secondAttribute="trailing" id="gEg-x0-rHZ"/>
+                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ayd-Zg-Awz">
                                 <rect key="frame" x="94" y="375.5" width="188" height="30"/>
@@ -66,7 +70,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0o-7R-e1D" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="75" y="415.5" width="225" height="30"/>
+                                <rect key="frame" x="172.5" y="415.5" width="30" height="30"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UL-5F-an3">
                                 <rect key="frame" x="75" y="637" width="225" height="30"/>
@@ -92,16 +96,11 @@
                             <constraint firstItem="ayd-Zg-Awz" firstAttribute="top" secondItem="fK2-wU-bJ1" secondAttribute="bottom" constant="8" id="18r-A2-2Mg"/>
                             <constraint firstItem="1UL-5F-an3" firstAttribute="top" secondItem="BWa-bf-ZCE" secondAttribute="bottom" constant="8" id="1UT-MM-a12"/>
                             <constraint firstItem="95g-gK-Pwv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DHv-OF-iHH"/>
-                            <constraint firstItem="1UL-5F-an3" firstAttribute="trailing" secondItem="Ptu-LQ-LsH" secondAttribute="trailing" id="EZF-rD-dSq"/>
                             <constraint firstItem="fK2-wU-bJ1" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.6" id="IO5-3x-Ig9"/>
                             <constraint firstItem="BWa-bf-ZCE" firstAttribute="leading" secondItem="1UL-5F-an3" secondAttribute="leading" id="Jwa-TO-00R"/>
                             <constraint firstItem="1UL-5F-an3" firstAttribute="centerX" secondItem="Ptu-LQ-LsH" secondAttribute="centerX" id="KKs-5M-PEa"/>
-                            <constraint firstItem="BWa-bf-ZCE" firstAttribute="trailing" secondItem="Ptu-LQ-LsH" secondAttribute="trailing" id="Ksp-rb-scl"/>
-                            <constraint firstItem="Q0o-7R-e1D" firstAttribute="leading" secondItem="Ptu-LQ-LsH" secondAttribute="leading" id="LvJ-7v-NPk"/>
-                            <constraint firstItem="Q0o-7R-e1D" firstAttribute="trailing" secondItem="Ptu-LQ-LsH" secondAttribute="trailing" id="Xo7-5q-62W"/>
                             <constraint firstItem="fK2-wU-bJ1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YPc-uG-6FP"/>
                             <constraint firstItem="95g-gK-Pwv" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="ZVQ-NY-HiN"/>
-                            <constraint firstItem="1UL-5F-an3" firstAttribute="leading" secondItem="Ptu-LQ-LsH" secondAttribute="leading" id="ZuR-3a-0ZP"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1UL-5F-an3" secondAttribute="bottom" id="aLF-4u-7hu"/>
                             <constraint firstItem="95g-gK-Pwv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="bSe-ZG-cah"/>
                             <constraint firstItem="Q0o-7R-e1D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="f85-dm-pGZ"/>
