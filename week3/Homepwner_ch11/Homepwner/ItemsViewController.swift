@@ -48,10 +48,6 @@ class ItemsViewController: UITableViewController {
     func addLastRow() {
         expensiveItem.append(nil)
         cheapItem.append(nil)
-        dump(expensiveItem)
-        dump(cheapItem)
-        print(expensiveItem.count)
-        print(cheapItem.count)
     }
 
     func initializeDictionary(){
@@ -69,8 +65,14 @@ class ItemsViewController: UITableViewController {
     // TableView에 필요한 정보를 넘겨주기위한 메서드 , 테이블뷰의 행 수 , 행 내용
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 각 섹션의 포함된 row 갯수만큼 출력.
-        let rows = [expensiveItem, cheapItem]
-        return rows[section].count
+        switch section {
+        case 0:
+            return expensiveItem.count
+        case 1:
+            return cheapItem.count
+        default:
+            return 0
+        }
     }
     
     // 섹션 몇개?
@@ -87,7 +89,6 @@ class ItemsViewController: UITableViewController {
         // 재사용식별자의 셀인지 아닌지 확인하기 위해 Queue를 검사.
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         if indexPath.section == 0 {
-            
             // ch9 은메달 과제.금메달 과제 폰트사이즈 조절. // ch11 동메달추가
             guard let checkedItem = expensiveItem[indexPath.row] else {
                 cell.textLabel?.text = "No More Items!"
@@ -99,7 +100,6 @@ class ItemsViewController: UITableViewController {
                 cell.textLabel?.text = checkedItem.name
                 cell.detailTextLabel?.text = "$\(checkedItem.valueInDollars)"
                 return cell
-            
         } else {
             if let checkedItem = cheapItem[indexPath.row] {
                 cell.backgroundColor = UIColor.green
@@ -162,32 +162,34 @@ class ItemsViewController: UITableViewController {
                 if indexPath.section == 0 {
                     let title = "Delete \(expensiveItem[indexPath.row]!.name)?"
                     let message = " Are you sure you want to delete this item ?"
-                    let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
                     
                     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                    ac.addAction(cancelAction)
+                    alertController.addAction(cancelAction)
                     let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
                         (action) -> Void in
                         self.expensiveItem.remove(at: indexPath.row)
                         tableView.deleteRows(at: [indexPath], with: .automatic)
                     })
-                    ac.addAction(deleteAction)
-                    self.present(ac, animated: true, completion: nil)
+                    
+                    alertController.addAction(deleteAction)
+                    self.present(alertController, animated: true, completion: nil)
                     
             } else {
                     let title = "Delete \(cheapItem[indexPath.row]!.name)?"
                     let message = " Are you sure you want to delete this item ?"
-                    let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
                     
                     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                    ac.addAction(cancelAction)
+                    alertController.addAction(cancelAction)
                     let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
                         (action) -> Void in
                         self.cheapItem.remove(at: indexPath.row)
                         tableView.deleteRows(at: [indexPath], with: .automatic)
                     })
-                    ac.addAction(deleteAction)
-                    self.present(ac, animated: true, completion: nil)
+                    
+                    alertController.addAction(deleteAction)
+                    self.present(alertController, animated: true, completion: nil)
             }
         }
     }
