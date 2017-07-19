@@ -50,7 +50,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             print("pwCheck is nil or is Empty")
             return
         }
-    
         if pw != pwCheck {
             print("Check Password, Try again..")
         } else {
