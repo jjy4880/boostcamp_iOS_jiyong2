@@ -11,20 +11,16 @@ import UIKit
 
 
 class ItemsViewController: UITableViewController {
-    var itemStore: ItemStore!
+    var itemStore: ItemStore?
     var expensiveItem = [Item?]()
     var cheapItem = [Item?]()
+    
     let sectionArray = ["고가", "저가"]
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // 상태 바의 높이를 얻는다.
         tableViewLocationSetting()
-        
-        // 아이템 리스트를 초기화 하고 가격대별로 구분한다.
-        initializeDictionary()
         
         // 항상 마지막 행에 특정 셀을 추가하기.
         addLastRow()
@@ -33,7 +29,7 @@ class ItemsViewController: UITableViewController {
         setBackgroundImage()
     }
     
-    func setBackgroundImage(){
+    private func setBackgroundImage(){
         let imageView = UIImageView(image: UIImage(named: "sky.jpeg"))
         imageView.frame = self.tableView.frame
         self.tableView.backgroundView = imageView
@@ -41,37 +37,30 @@ class ItemsViewController: UITableViewController {
     
     // ch9 금메댤 과제 - 각 셀의 배경을 지움.
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-       // cell.backgroundColor = .clear
+        // cell.backgroundColor = .clear
     }
     
     // ch9 은메달 과제.
-    func addLastRow() {
+    private func addLastRow() {
         expensiveItem.append(nil)
         cheapItem.append(nil)
     }
-
-    func initializeDictionary(){
-        let item2 = itemStore.allItems
-        
-        for i in 0..<item2.count {
-            if item2[i].valueInDollars >= 50 {
-                expensiveItem.append(item2[i])
-            } else {
-                cheapItem.append(item2[i])
-            }
-        }
+    
+    // 상태 바의 높이를 조정한다.
+    private func tableViewLocationSetting() {
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = insets
+        tableView.scrollIndicatorInsets = insets
     }
     
     // TableView에 필요한 정보를 넘겨주기위한 메서드 , 테이블뷰의 행 수 , 행 내용
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 각 섹션의 포함된 row 갯수만큼 출력.
-        switch section {
-        case 0:
+        if section == 0 {
             return expensiveItem.count
-        case 1:
+        } else {
             return cheapItem.count
-        default:
-            return 0
         }
     }
     
@@ -88,30 +77,20 @@ class ItemsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 재사용식별자의 셀인지 아닌지 확인하기 위해 Queue를 검사.
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        
         if indexPath.section == 0 {
             // ch9 은메달 과제.금메달 과제 폰트사이즈 조절. // ch11 동메달추가
-            guard let checkedItem = expensiveItem[indexPath.row] else {
-                cell.textLabel?.text = "No More Items!"
-                cell.detailTextLabel?.text = ""
-                return cell
-            }
-                cell.backgroundColor = UIColor.red
-                cell.textLabel?.font = UIFont(name: "Avenir", size: 20)
-                cell.textLabel?.text = checkedItem.name
-                cell.detailTextLabel?.text = "$\(checkedItem.valueInDollars)"
-                return cell
+            cell.backgroundColor = UIColor.red
+            cell.textLabel?.font = UIFont(name: "Avenir", size: 20)
+            cell.textLabel?.text = expensiveItem[indexPath.row]?.name ?? "No More Items"
+            cell.detailTextLabel?.text = "$\(expensiveItem[indexPath.row]?.valueInDollars ?? 0)"
+            return cell
         } else {
-            if let checkedItem = cheapItem[indexPath.row] {
-                cell.backgroundColor = UIColor.green
-                cell.textLabel?.font = UIFont(name: "Avenir", size: 20)
-                cell.textLabel?.text = checkedItem.name
-                cell.detailTextLabel?.text = "$\(checkedItem.valueInDollars)"
-                return cell
-            } else {
-                cell.textLabel?.text = "No More Items!"
-                cell.detailTextLabel?.text = ""
-                return cell
-            }
+            cell.backgroundColor = UIColor.green
+            cell.textLabel?.font = UIFont(name: "Avenir", size: 20)
+            cell.textLabel?.text = cheapItem[indexPath.row]?.name ?? "No More Items"
+            cell.detailTextLabel?.text = "$\(cheapItem[indexPath.row]?.valueInDollars ?? 0)"
+            return cell
         }
     }
     
@@ -131,71 +110,54 @@ class ItemsViewController: UITableViewController {
         }
     }
     
-    // 상태 바의 높이를 조정한다.
-    func tableViewLocationSetting() {
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
-    }
-    
-    // ch10 은메달 과제
-    @IBAction func addNewItem(sender: AnyObject) {
-        let newItem = itemStore.createItem()
-        print(newItem.valueInDollars) // 확인용
-        if newItem.valueInDollars >= 50 {
-            expensiveItem.insert(newItem, at: expensiveItem.count - 1)
-            let indexPath = IndexPath(row: expensiveItem.count - 2, section: 0)
-            print(indexPath) // 확인용
-            tableView.insertRows(at: [indexPath] , with: .automatic)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else {
+            return
+        }
+        if indexPath.section == 0 {
+            let title = "Delete \(expensiveItem[indexPath.row]!.name)?"
+            let message = " Are you sure you want to delete this item ?"
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
+                (action) -> Void in
+                self.expensiveItem.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            
+            alertController.addAction(deleteAction)
+            self.present(alertController, animated: true, completion: nil)
             
         } else {
-                cheapItem.insert(newItem, at: cheapItem.count - 1 )
-                let indexPath = IndexPath(row: cheapItem.count - 2, section: 1)
-                print(indexPath) // 확인용
-                tableView.insertRows(at: [indexPath], with: .automatic)
-            }
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-                if indexPath.section == 0 {
-                    let title = "Delete \(expensiveItem[indexPath.row]!.name)?"
-                    let message = " Are you sure you want to delete this item ?"
-                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-                    
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                    alertController.addAction(cancelAction)
-                    let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
-                        (action) -> Void in
-                        self.expensiveItem.remove(at: indexPath.row)
-                        tableView.deleteRows(at: [indexPath], with: .automatic)
-                    })
-                    
-                    alertController.addAction(deleteAction)
-                    self.present(alertController, animated: true, completion: nil)
-                    
-            } else {
-                    let title = "Delete \(cheapItem[indexPath.row]!.name)?"
-                    let message = " Are you sure you want to delete this item ?"
-                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-                    
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                    alertController.addAction(cancelAction)
-                    let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
-                        (action) -> Void in
-                        self.cheapItem.remove(at: indexPath.row)
-                        tableView.deleteRows(at: [indexPath], with: .automatic)
-                    })
-                    
-                    alertController.addAction(deleteAction)
-                    self.present(alertController, animated: true, completion: nil)
-            }
+            let title = "Delete \(cheapItem[indexPath.row]!.name)?"
+            let message = " Are you sure you want to delete this item ?"
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
+                (action) -> Void in
+                self.cheapItem.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            
+            alertController.addAction(deleteAction)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
-    
-    
+
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath == IndexPath(row: expensiveItem.count - 1, section: 0) {
+            return false
+        } else if indexPath == IndexPath(row: cheapItem.count - 1, section: 1) {
+            return false
+        } else {
+            return true
+        }
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         
         if indexPath == IndexPath(row: expensiveItem.count - 1, section: 0) {
             return false
@@ -204,33 +166,15 @@ class ItemsViewController: UITableViewController {
         } else {
             return true
         }
-
     }
     
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-       
-        if indexPath == IndexPath(row: expensiveItem.count - 1, section: 0) {
-            return false
-        } else if indexPath == IndexPath(row: cheapItem.count - 1, section: 1) {
-            return false
-        } else {
-            return true
-        }
-    }
-
     // 줄 수정.
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        itemStore.moveItemAtIndex(fromIndex: sourceIndexPath.row, toIndex: destinationIndexPath.row)
-    }
-    
-    @IBAction func toggleEditingMode(sender: AnyObject) {
-        if isEditing {
-            sender.setTitle("Edit", for: .normal)
-            setEditing(false, animated: true)
-        } else {
-            sender.setTitle("Done", for: .normal)
-            setEditing(true, animated: true)
+        guard let itemStore = itemStore else {
+            return
         }
+        
+        itemStore.moveItemAtIndex(fromIndex: sourceIndexPath.row, toIndex: destinationIndexPath.row)
     }
     
     // ch10 동메달 과제
@@ -260,4 +204,32 @@ class ItemsViewController: UITableViewController {
         }
     }
     
+    @IBAction func toggleEditingMode(sender: AnyObject) {
+        if isEditing {
+            sender.setTitle("Edit", for: .normal)
+            setEditing(false, animated: true)
+        } else {
+            sender.setTitle("Done", for: .normal)
+            setEditing(true, animated: true)
+        }
+    }
+    
+    // ch10 은메달 과제
+    @IBAction func addNewItem(sender: AnyObject) {
+        guard let itemStore = itemStore else {
+            return
+        }
+        
+        let newItem = itemStore.createItem()
+        
+        if newItem.valueInDollars >= 50 {
+            expensiveItem.insert(newItem, at: expensiveItem.count - 1)
+            let indexPath = IndexPath(row: expensiveItem.count - 2, section: 0)
+            tableView.insertRows(at: [indexPath] , with: .automatic)
+        } else {
+            cheapItem.insert(newItem, at: cheapItem.count - 1 )
+            let indexPath = IndexPath(row: cheapItem.count - 2, section: 1)
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        }
+    }
 }

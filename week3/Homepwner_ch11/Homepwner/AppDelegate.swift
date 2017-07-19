@@ -15,11 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // 앱이 처음 시작하면 실행되는 메서드
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
         // Item을 만든다.
         let itemStore = ItemStore()
-        
         // ItemsViewController 에 접근하여 itemStore를 설정한다.
         let itemController = window!.rootViewController as! ItemsViewController
         itemController.itemStore = itemStore
