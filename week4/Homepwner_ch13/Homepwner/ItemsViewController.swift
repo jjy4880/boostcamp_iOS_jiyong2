@@ -29,6 +29,18 @@ class ItemsViewController: UITableViewController {
         setBackgroundImage()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        // 인터페이스 빌더에서 edit버튼 추가할 수 있으나 액션연결 할 수 없다.
+        navigationItem.leftBarButtonItem = editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    
     private func setBackgroundImage(){
         let imageView = UIImageView(image: UIImage(named: "sky.jpeg"))
         imageView.frame = self.tableView.frame
@@ -48,10 +60,8 @@ class ItemsViewController: UITableViewController {
     
     // 상태 바의 높이를 조정한다.
     private func tableViewLocationSetting() {
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 60
     }
     
     // 세그웨이가 호출될 때마다 발생하는 메서드.
@@ -59,18 +69,21 @@ class ItemsViewController: UITableViewController {
         guard segue.identifier == "ShowItem" else {
             return
         }
-        guard let itemStore = itemStore else {
+        
+        // 어떤 행인지 체크.
+        guard let row = tableView.indexPathForSelectedRow else {
             return
         }
-        // 어떤 행인지 체크.
-        guard let row = tableView.indexPathForSelectedRow?.row else {
+        
+        guard let detailViewController = segue.destination as? DetailViewController else {
             return
         }
         
         // 행에 있는 아이템을 가져와서 detailView에 전달.
-        let item = itemStore.allItems[row]
-        if let detailViewController = segue.destination as? DetailViewController {
-            detailViewController.item = item
+        if row.section == 0 {
+            detailViewController.item = expensiveItem[row.row]
+        } else {
+            detailViewController.item = cheapItem[row.row]
         }
     }
     
@@ -224,17 +237,7 @@ class ItemsViewController: UITableViewController {
         }
     }
     
-    @IBAction func toggleEditingMode(sender: AnyObject) {
-        if isEditing {
-            sender.setTitle("Edit", for: .normal)
-            setEditing(false, animated: true)
-        } else {
-            sender.setTitle("Done", for: .normal)
-            setEditing(true, animated: true)
-        }
-    }
-    
-    // ch10 은메달 과제
+     // ch10 은메달 과제
     @IBAction func addNewItem(sender: AnyObject) {
         guard let itemStore = itemStore else {
             return
