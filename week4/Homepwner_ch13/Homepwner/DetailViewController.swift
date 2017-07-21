@@ -41,12 +41,14 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         
         guard let item = self.item else {
+            valueTextField.keyboardType = .decimalPad
             return
         }
         nameTextField.text = item.name
         serialNumberTextField.text = item.serialNumber
         valueTextField.text = numberFormatter.string(from: item.valueInDollars as NSNumber)
-        //        valueTextField.text = "$\(item.valueInDollars)"
+        // 13 동메달과제 (스토리보드에서도 설정가능)
+        valueTextField.keyboardType = .decimalPad
         dateLabel.text = dateFormatter.string(from: item.dateCareated)
     }
     
@@ -56,7 +58,6 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         // 퍼스트리스폰더를 정리.
         view.endEditing(true)
         guard let item = self.item else {
-
             return
         }
         item.name = nameTextField.text ?? ""
@@ -72,6 +73,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
