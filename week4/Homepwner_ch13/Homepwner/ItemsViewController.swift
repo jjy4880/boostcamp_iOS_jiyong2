@@ -33,12 +33,14 @@ class ItemsViewController: UITableViewController {
         super.init(coder: aDecoder)
         // 인터페이스 빌더에서 edit버튼 추가할 수 있으나 액션연결 할 수 없다.
         navigationItem.leftBarButtonItem = editButtonItem
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
+    
     
     private func setBackgroundImage(){
         let imageView = UIImageView(image: UIImage(named: "sky.jpeg"))
@@ -68,13 +70,16 @@ class ItemsViewController: UITableViewController {
         guard segue.identifier == "ShowItem" else {
             return
         }
+        
         // 어떤 행인지 체크.
         guard let row = tableView.indexPathForSelectedRow else {
             return
         }
+        
         guard let detailViewController = segue.destination as? DetailViewController else {
             return
         }
+        
         // 행에 있는 아이템을 가져와서 detailView에 전달.
         if row.section == 0 {
             detailViewController.item = expensiveItem[row.row]
@@ -86,7 +91,11 @@ class ItemsViewController: UITableViewController {
     // TableView에 필요한 정보를 넘겨주기위한 메서드 , 테이블뷰의 행 수 , 행 내용
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 각 섹션의 포함된 row 갯수만큼 출력.
-        return section == 0 ? expensiveItem.count : cheapItem.count
+        if section == 0 {
+            return expensiveItem.count
+        } else {
+            return cheapItem.count
+        }
     }
     
     // 섹션 몇개?
@@ -122,9 +131,16 @@ class ItemsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // ch9 금메달과제 , 행 높이 설정하기. 중첩if안쓰는 방법생각해보기.
         if indexPath.section == 0 {
-            return expensiveItem[indexPath.row] != nil ? 60 : 40
+            if expensiveItem[indexPath.row] == nil {
+                return 44
+            } else {
+                return 60
+            }
         } else {
-            return cheapItem[indexPath.row] != nil ? 60 : 40
+            if cheapItem[indexPath.row] == nil {
+                return 44
+            }
+            return 60
         }
     }
     
@@ -172,9 +188,11 @@ class ItemsViewController: UITableViewController {
         } else {
             return true
         }
+        
     }
     
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        
         if indexPath == IndexPath(row: expensiveItem.count - 1, section: 0) {
             return false
         } else if indexPath == IndexPath(row: cheapItem.count - 1, section: 1) {
@@ -210,6 +228,7 @@ class ItemsViewController: UITableViewController {
     
     // ch10 금메달 과제
     override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        
         if proposedDestinationIndexPath == IndexPath(row: expensiveItem.count - 1, section: 0) {
             return sourceIndexPath
         } else if proposedDestinationIndexPath == IndexPath(row: cheapItem.count - 1, section: 1){

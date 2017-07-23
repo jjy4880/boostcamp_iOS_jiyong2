@@ -16,6 +16,8 @@
 		CE8C44F81F18B6AA0063C920 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C44F71F18B6AA0063C920 /* ItemsViewController.swift */; };
 		CE8C44FA1F18B7850063C920 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C44F91F18B7850063C920 /* Item.swift */; };
 		CE8C44FC1F18C19E0063C920 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8C44FB1F18C19E0063C920 /* ItemStore.swift */; };
+		CEFB971A1F22347100F3C339 /* UserTypeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB97191F22347100F3C339 /* UserTypeTextField.swift */; };
+		CEFB971C1F226CD200F3C339 /* Datepicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB971B1F226CD200F3C339 /* Datepicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		CE8C44F71F18B6AA0063C920 /* ItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		CE8C44F91F18B7850063C920 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		CE8C44FB1F18C19E0063C920 /* ItemStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
+		CEFB97191F22347100F3C339 /* UserTypeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTypeTextField.swift; sourceTree = "<group>"; };
+		CEFB971B1F226CD200F3C339 /* Datepicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datepicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +68,12 @@
 			children = (
 				CE14DA511F1B57E400F9B1E9 /* sky.jpeg */,
 				CE8C44E51F18B5D20063C920 /* AppDelegate.swift */,
+				CEFB97191F22347100F3C339 /* UserTypeTextField.swift */,
 				CE8C44F71F18B6AA0063C920 /* ItemsViewController.swift */,
 				CE8C44F91F18B7850063C920 /* Item.swift */,
 				CE8C44E91F18B5D20063C920 /* Main.storyboard */,
 				CE8C44FB1F18C19E0063C920 /* ItemStore.swift */,
+				CEFB971B1F226CD200F3C339 /* Datepicker.swift */,
 				CE1EE7AC1F21F15000D73500 /* DetailViewController.swift */,
 				CE8C44EC1F18B5D20063C920 /* Assets.xcassets */,
 				CE8C44EE1F18B5D20063C920 /* LaunchScreen.storyboard */,
@@ -150,10 +156,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEFB971A1F22347100F3C339 /* UserTypeTextField.swift in Sources */,
 				CE8C44F81F18B6AA0063C920 /* ItemsViewController.swift in Sources */,
 				CE8C44FA1F18B7850063C920 /* Item.swift in Sources */,
 				CE1EE7AD1F21F15000D73500 /* DetailViewController.swift in Sources */,
 				CE8C44FC1F18C19E0063C920 /* ItemStore.swift in Sources */,
+				CEFB971C1F226CD200F3C339 /* Datepicker.swift in Sources */,
 				CE8C44E61F18B5D20063C920 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
