@@ -10,98 +10,76 @@ import UIKit
 
 class GameViewController: UIViewController {
     
+    @IBOutlet weak var recordTimer: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     
-    @IBOutlet weak var button1: UIButton!
-    @IBOutlet weak var button2: UIButton!
-    @IBOutlet weak var button3: UIButton!
-    @IBOutlet weak var button4: UIButton!
-    @IBOutlet weak var button5: UIButton!
-    @IBOutlet weak var button6: UIButton!
-    @IBOutlet weak var button7: UIButton!
-    @IBOutlet weak var button8: UIButton!
-    @IBOutlet weak var button9: UIButton!
-    @IBOutlet weak var button10: UIButton!
-    
-    @IBOutlet weak var button11: UIButton!
-    @IBOutlet weak var button12: UIButton!
-    @IBOutlet weak var button13: UIButton!
-    @IBOutlet weak var button14: UIButton!
-    @IBOutlet weak var button15: UIButton!
-    
-    @IBOutlet weak var button16: UIButton!
-    @IBOutlet weak var button17: UIButton!
-    @IBOutlet weak var button18: UIButton!
-    @IBOutlet weak var button19: UIButton!
-    @IBOutlet weak var button20: UIButton!
-    
-    @IBOutlet weak var button21: UIButton!
-    @IBOutlet weak var button22: UIButton!
-    @IBOutlet weak var button23: UIButton!
-    @IBOutlet weak var button24: UIButton!
-    @IBOutlet weak var button25: UIButton!
-
     @IBOutlet weak var buttonView: UIView!
+    @IBOutlet weak var historyButton: UIButton!
+    @IBOutlet var buttonArray: [UIButton]!
+    
     var minute = 0
     var second = 0
     var fraction = 0
+    var count = 1
     
     var timer = Timer()
-    var buttonArray: [UIButton] = []
     var buttonTitleArray: [Int] = [Int]()
-    var sortedArray = [UIButton]()
-    
+    var bestRecord = [String: String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      buttonArray = [button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, button13, button14, button15, button16, button17, button18, button19, button20, button21, button22, button23, button24, button25]
-             
-
     }
- 
     
     @IBAction func goToPrevView(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func startGame(_ sender: UIButton) {
         startButton.isHidden = true
         buttonView.isHidden = false
-        self.setRandomButton()
-        self.settingButtonTitle()
-//        self.disableButton()
-        self.numberClick()
+        // 25개 랜덤번호 생성
+        self.setRandomNumber()
         
-       
+        // 버튼에 랜덤번호 적용 / 타이머시작
+        self.settingButtonTitle()
+        
+        // history 버튼 disable
+        self.disableButton()
+        
+        // 버튼 클릭이벤트 , 게임 규칙셋팅
+        self.numberClick()
     }
     
-    func settingButtonTitle() {
-        
+    
+    private func settingButtonTitle() {
         for i in 0...buttonArray.count - 1 {
-            
             let buttonTitle = "\(buttonTitleArray[i])"
             buttonArray[i].setTitle(buttonTitle, for: .normal)
         }
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.realTime), userInfo: nil, repeats: true)
     }
     
-    func realTime() {
-       
+    // timeInterval만큼 카운트 증가시켜 포맷생성
+    @objc private func realTime() {
         fraction += 1
         if fraction == 100 {
             second += 1
             fraction = 0
         }
+        
         if second == 60 {
             minute += 1
             second = 0
         }
+        
         let secondString = second > 9 ? "\(second)" : "0\(second)"
         let minuteString = minute > 9 ? "\(minute)" : "0\(minute)"
-        
         timerLabel.text = "\(minuteString):\(secondString):\(fraction)"
     }
-    func setRandomButton() {
+    
+    private func setRandomNumber() {
         while buttonTitleArray.count != buttonArray.count {
             let randomIndex: Int = Int(arc4random_uniform(25) + 1)
             if !buttonTitleArray.contains(randomIndex) {
@@ -110,35 +88,114 @@ class GameViewController: UIViewController {
         }
     }
     
-    func numberClick() {
-        var newArray = buttonArray.sorted {
-            
-          Int($0.0.title(for: .normal)!)! < Int($0.1.title(for: .normal)!)!
-        }
-        
-        while newArray.count != 0 {
-            if newArray.first!.isSelected || newArray.first!.isHighlighted || newArray.first!.isTouchInside {
-                print("true")
-                newArray.first!.backgroundColor = UIColor.white
-                newArray.remove(at: 0)
-            } else {
-                print("10초 추가")
-                
-            }
+    private func numberClick() {
+        buttonArray.forEach { button in
+            buttonTarget(button: button)
         }
     }
     
-    func disableButton() {
-        buttonArray.forEach { button in
-            button.isUserInteractionEnabled = false
-        }
+    private func disableButton() {
+        historyButton.isEnabled = false
+        historyButton.alpha = 0.2
     }
-    func buttonTarget(button: UIButton) {
+    
+    private func buttonTarget(button: UIButton) {
         button.addTarget(self, action: #selector(hideButton(button:)), for: .touchUpInside)
     }
     
-    func hideButton(button: UIButton) {
-        button.backgroundColor = UIColor.white
+    @objc private func hideButton(button: UIButton) {
+        if button.title(for: .normal) == "\(count)" {
+            button.backgroundColor = UIColor.white
+            count += 1
+            if count == 26 {
+                // 타이머 멈춤
+                timer.invalidate()
+                
+                // 알럿발생 , 유저네임 입력 후 저장
+                alertRecord()
+                
+                // 초기화면 셋팅.
+                startButton.isHidden = false
+                buttonView.isHidden = true
+                
+                // 타이머 초기화, 버튼 초기화, history버튼 상태초기화
+                reset()
+            }
+        } else {
+            // 버튼넘버 순차적으로 누르지 않았을 때 3초씩 증가.
+            second += 3
+        }
     }
     
+    private func alertRecord() {
+        let alert = UIAlertController(title: "Clear !", message: "Enter your name" , preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addTextField {
+            (UITextField) -> Void in
+        }
+        
+        // 최고기록 설정
+        let saveAction = UIAlertAction(title: "OK", style: .default) {
+            (action: UIAlertAction) -> Void in
+            if let userName = alert.textFields?.first {
+                self.bestRecord[self.timerLabel.text!] = userName.text
+                self.recordTimer.text = self.recordPrint()
+                self.userNameLabel.text = self.bestRecord[self.recordTimer.text!]
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "CANCEL", style: .default) {
+            (action: UIAlertAction) -> Void in
+            // Alert는 기본적으로 창을 꺼주는 기능을 하기 때문에 코드를 수정할 필요가 없다.
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(saveAction)
+        present(alert, animated: false, completion: nil)
+    }
+    
+    private func presentNextView(record: String?, name: String?) {
+        guard let rvc = self.storyboard?.instantiateViewController(withIdentifier: "ScoreView")
+            as? ScoreViewController else {
+            return
+        }
+        
+        guard let record = record, let name = name else {
+            return
+        }
+        
+        rvc.record = record
+        rvc.userName = name
+        present(rvc, animated: true, completion: nil)
+    }
+    
+    private func reset() {
+        self.fraction = 0
+        self.minute = 0
+        self.second = 0
+        count = 1
+        historyButton.isEnabled = true
+        historyButton.alpha = 1
+        
+        buttonArray.forEach { button in
+            button.backgroundColor = UIColor.init(red: 1 / 255, green: 22 / 255, blue: 134 / 255, alpha: 1.0)
+        }
+    }
+    
+    @IBAction func historyAction(_ sender: UIButton) {
+        presentNextView(record: timerLabel.text, name: bestRecord[timerLabel.text!])
+        timerLabel.text = "00:00:00"
+    }
+    
+    private func recordPrint() -> String {
+        let newRecordArray = self.bestRecord.sorted(by: {
+            $0.0.key < $0.1.key
+        })
+        
+        guard let bestRecord = newRecordArray.first?.key else {
+            return " Error "
+        }
+        
+        return bestRecord
+    }
 }

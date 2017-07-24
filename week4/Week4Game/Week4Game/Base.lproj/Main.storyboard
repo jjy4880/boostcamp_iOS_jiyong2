@@ -46,7 +46,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="gay-3E-VUI" kind="push" id="ppu-eQ-rce"/>
+                                            <segue destination="gay-3E-VUI" kind="push" id="ENU-UI-g5O"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -77,35 +77,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yat-rS-tvg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-513" y="929"/>
-        </scene>
-        <!--Root View Controller-->
-        <scene sceneID="lvE-62-i9u">
-            <objects>
-                <tableViewController id="Oxx-QA-BnH" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CnT-DN-Kon">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="AfT-2e-80y">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AfT-2e-80y" id="C9x-KN-QJz">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Oxx-QA-BnH" id="Jac-hK-jUu"/>
-                            <outlet property="delegate" destination="Oxx-QA-BnH" id="WE1-Rl-XeJ"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="p22-JR-dqa"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VQ4-je-bdk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3338" y="940"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OoH-dj-EbP">
@@ -153,9 +124,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdR-4l-uXd">
-                                <rect key="frame" x="279.5" y="104" width="71.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="223.5" y="104" width="127.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="0.11758067685207102" green="0.37753854442970824" blue="0.062622607366309951" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzA-bq-yIz">
@@ -307,7 +278,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSH-wd-cIG">
                                                 <rect key="frame" x="0.0" y="0.0" width="65" height="67"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.0039236424490809441" green="0.086146719753742218" blue="0.52636820077896118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="16">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -344,9 +315,6 @@
                                                 <state key="normal" title="20">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="buttonClick:" destination="Zrf-5B-fEB" eventType="touchUpInside" id="gGN-nF-y4S"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -443,7 +411,8 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="gay-3E-VUI" kind="push" id="l5p-8h-T2d"/>
+                                            <action selector="historyAction:" destination="Zrf-5B-fEB" eventType="touchUpInside" id="hCT-an-JJg"/>
+                                            <segue destination="gay-3E-VUI" kind="presentation" id="HuP-Tj-6n2"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -491,34 +460,37 @@
                     </view>
                     <navigationItem key="navigationItem" id="9Db-DD-hAF"/>
                     <connections>
-                        <outlet property="button1" destination="dWX-sC-mCj" id="I2f-dB-HO7"/>
-                        <outlet property="button10" destination="Zoo-ci-diG" id="cfH-P8-zcR"/>
-                        <outlet property="button11" destination="3Qu-HM-XXE" id="1bU-5k-tcj"/>
-                        <outlet property="button12" destination="TOB-7X-SAU" id="pLE-zp-zOU"/>
-                        <outlet property="button13" destination="oRc-xd-i42" id="cJF-Cv-rDW"/>
-                        <outlet property="button14" destination="eT8-0X-GFm" id="rTm-AR-bg4"/>
-                        <outlet property="button15" destination="52v-12-8kc" id="XJh-GC-0jx"/>
-                        <outlet property="button16" destination="hSH-wd-cIG" id="TB5-Ny-lgh"/>
-                        <outlet property="button17" destination="YEe-bp-YYg" id="QYf-lg-iQH"/>
-                        <outlet property="button18" destination="M8d-6s-Q7B" id="A0t-4y-EBG"/>
-                        <outlet property="button19" destination="l93-GS-sxg" id="CMO-9b-opV"/>
-                        <outlet property="button2" destination="jZv-fa-x2o" id="Qkh-SH-5Lz"/>
-                        <outlet property="button20" destination="cQ3-fh-lEb" id="Hzl-m2-LPi"/>
-                        <outlet property="button21" destination="WCu-dR-NpC" id="1Kn-QM-eQA"/>
-                        <outlet property="button22" destination="5cD-W6-e7g" id="CDP-4n-ijG"/>
-                        <outlet property="button23" destination="9rI-rI-Vpc" id="xdS-7D-tgY"/>
-                        <outlet property="button24" destination="yeJ-z1-rXe" id="QAP-Bq-471"/>
-                        <outlet property="button25" destination="x4F-m2-iN5" id="Oeo-xb-DeI"/>
-                        <outlet property="button3" destination="4y5-jz-XE9" id="vWN-PO-TVT"/>
-                        <outlet property="button4" destination="E33-gl-uMD" id="qAL-dK-bkJ"/>
-                        <outlet property="button5" destination="cxX-WK-q5j" id="fHw-Bp-x3p"/>
-                        <outlet property="button6" destination="2Kp-gs-Utx" id="oRK-2n-5SU"/>
-                        <outlet property="button7" destination="SYs-Cs-Rto" id="qAw-Qa-YeW"/>
-                        <outlet property="button8" destination="dX7-UK-FbY" id="T7w-fb-wNh"/>
-                        <outlet property="button9" destination="0MH-II-lEd" id="DZa-ax-swE"/>
                         <outlet property="buttonView" destination="TA5-B7-3r5" id="UD1-Z2-8j0"/>
+                        <outlet property="historyButton" destination="lGt-6i-DQr" id="4RK-QP-KKk"/>
+                        <outlet property="recordTimer" destination="3Yh-mb-tfS" id="yVV-1r-ryX"/>
                         <outlet property="startButton" destination="Jmm-rX-Pok" id="YmU-TX-Zgx"/>
                         <outlet property="timerLabel" destination="cdR-4l-uXd" id="Hjt-Wv-fdX"/>
+                        <outlet property="userNameLabel" destination="YzA-bq-yIz" id="tOQ-95-Rbg"/>
+                        <outletCollection property="buttonArray" destination="dWX-sC-mCj" collectionClass="NSMutableArray" id="MX9-fe-jJe"/>
+                        <outletCollection property="buttonArray" destination="jZv-fa-x2o" collectionClass="NSMutableArray" id="skR-Ok-qUE"/>
+                        <outletCollection property="buttonArray" destination="4y5-jz-XE9" collectionClass="NSMutableArray" id="wdt-J3-KmW"/>
+                        <outletCollection property="buttonArray" destination="E33-gl-uMD" collectionClass="NSMutableArray" id="Bmb-jv-pfe"/>
+                        <outletCollection property="buttonArray" destination="cxX-WK-q5j" collectionClass="NSMutableArray" id="lV9-Aw-JTg"/>
+                        <outletCollection property="buttonArray" destination="2Kp-gs-Utx" collectionClass="NSMutableArray" id="bFp-6B-P4A"/>
+                        <outletCollection property="buttonArray" destination="SYs-Cs-Rto" collectionClass="NSMutableArray" id="gZa-wK-kRv"/>
+                        <outletCollection property="buttonArray" destination="dX7-UK-FbY" collectionClass="NSMutableArray" id="9JN-w9-s6T"/>
+                        <outletCollection property="buttonArray" destination="0MH-II-lEd" collectionClass="NSMutableArray" id="gBE-yh-3fW"/>
+                        <outletCollection property="buttonArray" destination="Zoo-ci-diG" collectionClass="NSMutableArray" id="GXw-aO-KXt"/>
+                        <outletCollection property="buttonArray" destination="3Qu-HM-XXE" collectionClass="NSMutableArray" id="xO5-Bl-6I4"/>
+                        <outletCollection property="buttonArray" destination="TOB-7X-SAU" collectionClass="NSMutableArray" id="kWF-qx-zja"/>
+                        <outletCollection property="buttonArray" destination="oRc-xd-i42" collectionClass="NSMutableArray" id="ySO-Pw-pxe"/>
+                        <outletCollection property="buttonArray" destination="eT8-0X-GFm" collectionClass="NSMutableArray" id="Gyl-jV-kDy"/>
+                        <outletCollection property="buttonArray" destination="52v-12-8kc" collectionClass="NSMutableArray" id="pn7-Oa-Ia4"/>
+                        <outletCollection property="buttonArray" destination="hSH-wd-cIG" collectionClass="NSMutableArray" id="xPS-Aa-ZeU"/>
+                        <outletCollection property="buttonArray" destination="YEe-bp-YYg" collectionClass="NSMutableArray" id="qHo-hK-thJ"/>
+                        <outletCollection property="buttonArray" destination="M8d-6s-Q7B" collectionClass="NSMutableArray" id="Cf0-LX-YiK"/>
+                        <outletCollection property="buttonArray" destination="l93-GS-sxg" collectionClass="NSMutableArray" id="F32-XQ-Klz"/>
+                        <outletCollection property="buttonArray" destination="cQ3-fh-lEb" collectionClass="NSMutableArray" id="3ld-5a-OJX"/>
+                        <outletCollection property="buttonArray" destination="WCu-dR-NpC" collectionClass="NSMutableArray" id="84L-Ga-c8N"/>
+                        <outletCollection property="buttonArray" destination="5cD-W6-e7g" collectionClass="NSMutableArray" id="TC3-el-p6T"/>
+                        <outletCollection property="buttonArray" destination="9rI-rI-Vpc" collectionClass="NSMutableArray" id="jO8-gW-hHJ"/>
+                        <outletCollection property="buttonArray" destination="yeJ-z1-rXe" collectionClass="NSMutableArray" id="B94-HU-ecA"/>
+                        <outletCollection property="buttonArray" destination="x4F-m2-iN5" collectionClass="NSMutableArray" id="39n-bM-abx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qKW-2E-gQF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -528,7 +500,7 @@
         <!--Score View Controller-->
         <scene sceneID="7EI-BZ-kCv">
             <objects>
-                <viewController id="gay-3E-VUI" customClass="ScoreViewController" customModule="Week4Game" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScoreView" id="gay-3E-VUI" customClass="ScoreViewController" customModule="Week4Game" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3AO-Hp-IDO"/>
                         <viewControllerLayoutGuide type="bottom" id="sVt-xc-v8T"/>
@@ -541,6 +513,35 @@
                                 <rect key="frame" x="0.0" y="34" width="375" height="584"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="e1v-YR-78t" detailTextLabel="PTb-Rz-5kO" style="IBUITableViewCellStyleSubtitle" id="9Sm-aw-ydK">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Sm-aw-ydK" id="IjM-20-3dt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e1v-YR-78t">
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PTb-Rz-5kO">
+                                                    <rect key="frame" x="15" y="25.5" width="33" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="gay-3E-VUI" id="Dwg-Lk-64k"/>
+                                </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8O1-Cx-OEx">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
@@ -554,6 +555,7 @@
                                         </state>
                                         <connections>
                                             <action selector="GoToPrevView:" destination="gay-3E-VUI" eventType="touchUpInside" id="aDT-BE-DcJ"/>
+                                            <action selector="dismissView:" destination="gay-3E-VUI" eventType="touchUpInside" id="osx-h4-7I6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j49-Ot-Anb">
@@ -563,6 +565,9 @@
                                         <state key="normal" title="RESET">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="resetRecord:" destination="gay-3E-VUI" eventType="touchUpInside" id="XiD-SP-zz2"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -579,6 +584,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Sn3-K7-0KZ"/>
+                    <connections>
+                        <outlet property="recordView" destination="SLo-gV-CD4" id="xCk-m5-fQd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i1o-CJ-2Ek" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -586,6 +594,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="l5p-8h-T2d"/>
+        <segue reference="HuP-Tj-6n2"/>
     </inferredMetricsTieBreakers>
 </document>
