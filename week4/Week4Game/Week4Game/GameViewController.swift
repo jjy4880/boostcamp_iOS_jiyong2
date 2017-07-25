@@ -123,8 +123,6 @@ class GameViewController: UIViewController {
                 
                 // 타이머 초기화, 버튼 초기화, history버튼 상태초기화
                 reset()
-                setRandomNumber()
-                settingButtonTitle()
             }
         } else {
             // 버튼넘버 순차적으로 누르지 않았을 때 3초씩 증가.
@@ -180,6 +178,7 @@ class GameViewController: UIViewController {
         count = 1
         historyButton.isEnabled = true
         historyButton.alpha = 1
+        buttonTitleArray = []
         
         buttonArray.forEach { button in
             button.backgroundColor = UIColor.init(red: 1 / 255, green: 22 / 255, blue: 134 / 255, alpha: 1.0)
@@ -188,7 +187,6 @@ class GameViewController: UIViewController {
     
     @IBAction func historyAction(_ sender: UIButton) {
         presentNextView(record: recordList.allItems)
-        timerLabel.text = "00:00:00"
     }
     
     private func getCurrentTime() -> String {
