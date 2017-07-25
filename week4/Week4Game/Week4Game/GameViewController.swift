@@ -10,7 +10,7 @@ import UIKit
 
 class GameViewController: UIViewController {
     
-    @IBOutlet weak var recordTimer: UILabel!
+    @IBOutlet weak var bestRecordLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
@@ -26,7 +26,7 @@ class GameViewController: UIViewController {
     
     var timer = Timer()
     var buttonTitleArray: [Int] = [Int]()
-    var bestRecord = [String: String]()
+    var recordList = RecordStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +42,11 @@ class GameViewController: UIViewController {
         // 25개 랜덤번호 생성
         self.setRandomNumber()
         
-        // 버튼에 랜덤번호 적용 / 타이머시작
+        // 버튼에 랜덤번호 적용
         self.settingButtonTitle()
+        
+        // 타이머시작
+        self.startTimer()
         
         // history 버튼 disable
         self.disableButton()
@@ -52,15 +55,16 @@ class GameViewController: UIViewController {
         self.numberClick()
     }
     
-    
     private func settingButtonTitle() {
         for i in 0...buttonArray.count - 1 {
             let buttonTitle = "\(buttonTitleArray[i])"
             buttonArray[i].setTitle(buttonTitle, for: .normal)
         }
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.realTime), userInfo: nil, repeats: true)
     }
     
+    private func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.realTime), userInfo: nil, repeats: true)
+    }
     // timeInterval만큼 카운트 증가시켜 포맷생성
     @objc private func realTime() {
         fraction += 1
@@ -73,7 +77,6 @@ class GameViewController: UIViewController {
             minute += 1
             second = 0
         }
-        
         let secondString = second > 9 ? "\(second)" : "0\(second)"
         let minuteString = minute > 9 ? "\(minute)" : "0\(minute)"
         timerLabel.text = "\(minuteString):\(secondString):\(fraction)"
@@ -107,7 +110,7 @@ class GameViewController: UIViewController {
         if button.title(for: .normal) == "\(count)" {
             button.backgroundColor = UIColor.white
             count += 1
-            if count == 26 {
+            if count == 3 {
                 // 타이머 멈춤
                 timer.invalidate()
                 
@@ -120,6 +123,8 @@ class GameViewController: UIViewController {
                 
                 // 타이머 초기화, 버튼 초기화, history버튼 상태초기화
                 reset()
+                setRandomNumber()
+                settingButtonTitle()
             }
         } else {
             // 버튼넘버 순차적으로 누르지 않았을 때 3초씩 증가.
@@ -138,9 +143,13 @@ class GameViewController: UIViewController {
         let saveAction = UIAlertAction(title: "OK", style: .default) {
             (action: UIAlertAction) -> Void in
             if let userName = alert.textFields?.first {
-                self.bestRecord[self.timerLabel.text!] = userName.text
-                self.recordTimer.text = self.recordPrint()
-                self.userNameLabel.text = self.bestRecord[self.recordTimer.text!]
+                let currentTime = self.getCurrentTime()
+                let record = Record(recordName: userName.text!, recordTime: self.timerLabel.text!, currentTime: currentTime)
+                
+                self.recordList.allItems.append(record)
+                self.recordList.sortRecord()
+                self.userNameLabel.text = self.recordList.allItems.first!.recordName
+                self.bestRecordLabel.text = self.recordList.allItems.first!.recordTime
             }
         }
         
@@ -154,19 +163,14 @@ class GameViewController: UIViewController {
         present(alert, animated: false, completion: nil)
     }
     
-    private func presentNextView(record: String?, name: String?) {
-        guard let rvc = self.storyboard?.instantiateViewController(withIdentifier: "ScoreView")
+    private func presentNextView(record: [Record]) {
+        guard let scoreView = self.storyboard?.instantiateViewController(withIdentifier: "ScoreView")
             as? ScoreViewController else {
-            return
+                return
         }
         
-        guard let record = record, let name = name else {
-            return
-        }
-        
-        rvc.record = record
-        rvc.userName = name
-        present(rvc, animated: true, completion: nil)
+        scoreView.recordObjectList = record
+        present(scoreView, animated: true, completion: nil)
     }
     
     private func reset() {
@@ -183,19 +187,15 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func historyAction(_ sender: UIButton) {
-        presentNextView(record: timerLabel.text, name: bestRecord[timerLabel.text!])
+        presentNextView(record: recordList.allItems)
         timerLabel.text = "00:00:00"
     }
     
-    private func recordPrint() -> String {
-        let newRecordArray = self.bestRecord.sorted(by: {
-            $0.0.key < $0.1.key
-        })
+    private func getCurrentTime() -> String {
+        let dateFormatter : DateFormatter = DateFormatter()
+        let date = Date()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
-        guard let bestRecord = newRecordArray.first?.key else {
-            return " Error "
-        }
-        
-        return bestRecord
+        return dateFormatter.string(from: date)
     }
 }

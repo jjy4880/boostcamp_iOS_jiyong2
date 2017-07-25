@@ -12,73 +12,36 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var recordView: UITableView!
     
-    var dataKey = "data"
-    var dataName = "name"
-    var record: String?
-    var userName: String?
-    var checkRecord = true
+    var recordObjectList: [Record] = [Record]()
     
-    var dictionaryList = [String: String]()
-    var recordList = [String?]()
-    var recordName = [String?]()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let array = UserDefaults.standard.object(forKey: dataKey) as? [String] {
-            recordList = array
-        }
-        
-        if let name = UserDefaults.standard.object(forKey: dataName) as? [String] {
-            recordName = name
-        }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        guard let record = record, var userName = userName else {
-            return
+        print("넘어온레코드갯수 will")
+        print(recordObjectList.count)
+        recordObjectList.forEach { record in
+            print(record.recordName)
+            print(record.currentTime)
+            print("==")
         }
-        
-        let currentTime = getCurrentTime()
-        
-        userName += "   (\(currentTime))"
-        recordList.append(record)
-        recordName.append(userName)
-        dictionaryList[record] = userName
-        UserDefaults.standard.set(self.recordList, forKey: self.dataKey)
-        UserDefaults.standard.set(self.recordName, forKey: self.dataName)
-    }
-    
-    private func getCurrentTime() -> String {
-        let dateFormatter : DateFormatter = DateFormatter()
-        let date = Date()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        return dateFormatter.string(from: date)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recordList.count
+        return recordObjectList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let recordCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
-        // 기록을 정렬
-        sortList()
-        guard let recordIndex = recordList[indexPath.row] else {
-            return recordCell
-        }
-        
-        recordCell.textLabel?.text = recordList[indexPath.row]
-        recordName.append(dictionaryList[recordIndex])
-        recordCell.detailTextLabel?.text = recordName[indexPath.row]
+        let record = recordObjectList[indexPath.row]
+        recordCell.textLabel?.text = record.recordTime
+        recordCell.detailTextLabel?.text = "\(record.recordName)   (\(record.currentTime)) "
         return recordCell
     }
     
@@ -97,19 +60,11 @@ class ScoreViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     // 기록 삭제,초기화
     @IBAction func resetRecord(_ sender: UIButton) {
-        recordList = [String?]()
-        recordName = [String?]()
+        recordObjectList = []
         self.recordView.reloadData()
         
         for key in UserDefaults.standard.dictionaryRepresentation().keys {
             UserDefaults.standard.removeObject(forKey: key.description)
         }
-    }
-    
-    // 정렬
-    private func sortList() {
-        recordList.sort(by: {
-            $0! < $1!
-        })
     }
 }

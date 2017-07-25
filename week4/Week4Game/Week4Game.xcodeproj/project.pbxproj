@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1A7EE21F26FF840046C8EA /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A7EE11F26FF840046C8EA /* Record.swift */; };
+		CE1A7EE41F270A170046C8EA /* RecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A7EE31F270A170046C8EA /* RecordStore.swift */; };
 		CE6DAEA21F246B820043C962 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DAEA11F246B810043C962 /* GameViewController.swift */; };
 		CE6DAEA41F246BC00043C962 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DAEA31F246BC00043C962 /* MainViewController.swift */; };
 		CE6DAEA61F246C430043C962 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DAEA51F246C430043C962 /* ScoreViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE1A7EE11F26FF840046C8EA /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		CE1A7EE31F270A170046C8EA /* RecordStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordStore.swift; sourceTree = "<group>"; };
 		CE6DAEA11F246B810043C962 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		CE6DAEA31F246BC00043C962 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CE6DAEA51F246C430043C962 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 				CE6DAEA31F246BC00043C962 /* MainViewController.swift */,
 				CE6DAEA11F246B810043C962 /* GameViewController.swift */,
 				CE6DAEA51F246C430043C962 /* ScoreViewController.swift */,
+				CE1A7EE11F26FF840046C8EA /* Record.swift */,
+				CE1A7EE31F270A170046C8EA /* RecordStore.swift */,
 				CEDFAC771F23C64100EE3A95 /* LaunchScreen.storyboard */,
 				CEDFAC7A1F23C64100EE3A95 /* Info.plist */,
 				CEDFAC721F23C64100EE3A95 /* Week4Game.xcdatamodeld */,
@@ -149,10 +155,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1A7EE41F270A170046C8EA /* RecordStore.swift in Sources */,
 				CE6DAEA21F246B820043C962 /* GameViewController.swift in Sources */,
 				CEDFAC6E1F23C64100EE3A95 /* ViewController.swift in Sources */,
 				CEDFAC6C1F23C64100EE3A95 /* AppDelegate.swift in Sources */,
 				CEDFAC741F23C64100EE3A95 /* Week4Game.xcdatamodeld in Sources */,
+				CE1A7EE21F26FF840046C8EA /* Record.swift in Sources */,
 				CE6DAEA41F246BC00043C962 /* MainViewController.swift in Sources */,
 				CE6DAEA61F246C430043C962 /* ScoreViewController.swift in Sources */,
 			);

@@ -460,9 +460,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="9Db-DD-hAF"/>
                     <connections>
+                        <outlet property="bestRecordLabel" destination="3Yh-mb-tfS" id="zIn-wb-Xf3"/>
                         <outlet property="buttonView" destination="TA5-B7-3r5" id="UD1-Z2-8j0"/>
                         <outlet property="historyButton" destination="lGt-6i-DQr" id="4RK-QP-KKk"/>
-                        <outlet property="recordTimer" destination="3Yh-mb-tfS" id="yVV-1r-ryX"/>
                         <outlet property="startButton" destination="Jmm-rX-Pok" id="YmU-TX-Zgx"/>
                         <outlet property="timerLabel" destination="cdR-4l-uXd" id="Hjt-Wv-fdX"/>
                         <outlet property="userNameLabel" destination="YzA-bq-yIz" id="tOQ-95-Rbg"/>
@@ -495,7 +495,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qKW-2E-gQF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="200.80000000000001" y="939.58020989505258"/>
+            <point key="canvasLocation" x="319" y="27"/>
         </scene>
         <!--Score View Controller-->
         <scene sceneID="7EI-BZ-kCv">
@@ -590,7 +590,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i1o-CJ-2Ek" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="939.58020989505258"/>
+            <point key="canvasLocation" x="319" y="2374"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
