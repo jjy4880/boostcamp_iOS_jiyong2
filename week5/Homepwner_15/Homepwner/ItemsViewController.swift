@@ -64,6 +64,7 @@ class ItemsViewController: UITableViewController {
         guard editingStyle == .delete else {
             return
         }
+        
         guard let item = itemStore?.allItems[indexPath.row] else {
             return
         }
@@ -81,7 +82,7 @@ class ItemsViewController: UITableViewController {
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive,
                                          handler: { (action) -> Void in
                                             self.itemStore?.removeItem(item)
-                                            self.imageStore?.deleteImageForKey(key: item.itemKey)
+                                            self.imageStore?.deleteImageForKey(item.itemKey)
                                             self.tableView.deleteRows(at: [indexPath], with: .automatic)
                                         })
         ac.addAction(deleteAction)
