@@ -37,10 +37,8 @@ class PhotoStore {
                     print(header)
                 }
             }
-            
             completion(result)
         }
-        
         task.resume()
     }
     
@@ -48,7 +46,6 @@ class PhotoStore {
         guard let jsonData = data else {
             return .failure(error!)
         }
-        
         return FlickrAPI.photosFromJSONData(data: jsonData)
     }
     
@@ -60,10 +57,8 @@ class PhotoStore {
             if case let .success(image) = result {
                 photo.image = image
             }
-            
             completion(result)
         }
-        
         task.resume()
     }
     

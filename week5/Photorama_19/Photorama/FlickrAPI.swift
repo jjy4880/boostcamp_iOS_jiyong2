@@ -77,17 +77,15 @@ struct FlickrAPI {
             
             var finalPhotos = [Photo]()
             
-            
             photosArray.forEach { photojson in
                 if let photo = photoFromJSONObject(json: photojson) {
                     finalPhotos.append(photo)
                 }
             }
-    
+            
             if finalPhotos.count == 0 && photosArray.count > 0 {
                 return .failure(FlickrError.invalidJSONData)
             }
-            
             return .success(finalPhotos)
         } catch let error {
             return .failure(error)
