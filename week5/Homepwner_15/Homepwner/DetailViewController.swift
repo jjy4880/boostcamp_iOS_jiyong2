@@ -62,9 +62,15 @@ UINavigationControllerDelegate {
     
     @IBAction func takePicker(_ sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
+        let crossHairPNG = "crosshair.png"
+        let imageCrossHair = UIImage(named: crossHairPNG)
+        let crossHairImageView = UIImageView(image: imageCrossHair)
+        crossHairImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        crossHairImageView.center = imagePicker.view.center
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             imagePicker.sourceType = .camera
+            imagePicker.cameraOverlayView = crossHairImageView
             } else {
                 imagePicker.sourceType = .photoLibrary
         }
