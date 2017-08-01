@@ -9,7 +9,6 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
-    
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var nicknameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!

@@ -9,7 +9,6 @@
 import UIKit
 
 struct ImageBoardAPI {
-    
     func loginInfoSendToServer(email: String, password: String) {
         let url = "https://ios-api.boostcamp.connect.or.kr/login"
         let body: [String: String] = ["email": email, "password": password]

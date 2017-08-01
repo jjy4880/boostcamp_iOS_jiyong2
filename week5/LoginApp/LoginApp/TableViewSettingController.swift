@@ -9,6 +9,7 @@
 import UIKit
 
 class TableViewSettingContvarler: UITableViewController {
+    @IBOutlet var tableViewTest: UITableView!
     
     var dataStore = DataStore()
     
@@ -22,23 +23,30 @@ class TableViewSettingContvarler: UITableViewController {
         dataStore.getAPIDtata()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "ShowData" else { return }
+        guard let selectedIndexPath = tableViewTest.indexPathForSelectedRow else { return }
+        guard let destinationViewController = segue.destination as? BoardViewController else { return }
+    
+        let data = dataStore.list[selectedIndexPath.row]
+        destinationViewController.data = data
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(dataStore.list.count)
         return dataStore.list.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let row = dataStore.list[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as? TableViewCell ?? TableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
+            as? TableViewCell ?? TableViewCell()
         
         cell.title.text = row.image_title
         cell.author.text = row.author_nickname
         cell.currentDate.text = "\(row.created_at ?? 0)"
         let imageURL = "https://ios-api.boostcamp.connect.or.kr\(row.thumb_image_url!)"
-        guard let url = URL(string: imageURL) else {
-            return cell
-        }
+        
+        guard let url = URL(string: imageURL) else { return cell }
         
         do {
             let image = try Data(contentsOf: url)
@@ -48,7 +56,6 @@ class TableViewSettingContvarler: UITableViewController {
         }catch {
             print(error)
         }
-        
         return cell
     }
 }

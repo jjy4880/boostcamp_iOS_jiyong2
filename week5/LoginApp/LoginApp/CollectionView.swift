@@ -9,7 +9,6 @@
 import UIKit
 
 class CollectionView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
     @IBOutlet var collectionView: UICollectionView!
     
     var dataStore = DataStore()
@@ -19,36 +18,6 @@ class CollectionView: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.delegate = self
         collectionView.dataSource = self
         dataStore.getAPIDtata()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "ShowData" else {
-            return
-        }
-        
-        guard let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first else {
-            return
-        }
-        
-        guard let destinationViewController = segue.destination as? BoardViewController else {
-            return
-        }
-        
-        let imageURL = "https://ios-api.boostcamp.connect.or.kr\(dataStore.list[selectedIndexPath.row].thumb_image_url!)"
-        
-        guard let url = URL(string: imageURL) else {
-            return
-        }
-        
-        do {
-            let image = try Data(contentsOf: url)
-            destinationViewController.imageView.image = UIImage(data: image)
-            destinationViewController.titleLabel.text = dataStore.list[selectedIndexPath.row].image_title
-            destinationViewController.timeLabel.text = "\(dataStore.list[selectedIndexPath.row].created_at ?? 0)"
-            destinationViewController.nicknameLabel.text = dataStore.list[selectedIndexPath.row].author_nickname
-        } catch {
-            print(error)
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -64,9 +33,8 @@ class CollectionView: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.nicknameLabel.text = row.author_nickname
         
         let imageURL = "https://ios-api.boostcamp.connect.or.kr\(row.thumb_image_url!)"
-        guard let url = URL(string: imageURL) else {
-            return cell
-        }
+        
+        guard let url = URL(string: imageURL) else { return cell }
         
         do {
             let image = try Data(contentsOf: url)
@@ -78,7 +46,7 @@ class CollectionView: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width / 2
+        let width = collectionView.frame.width / 2 - 8
         return CGSize(width: width, height: width * 1.5)
     }
 }

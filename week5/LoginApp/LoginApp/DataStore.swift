@@ -13,15 +13,14 @@ class DataStore {
     func getAPIDtata() {
         let url = "https://ios-api.boostcamp.connect.or.kr/"
         let apiURL : URL! = URL(string: url)
-        guard let apidata = try? Data(contentsOf: apiURL) else {
-            return
-        }
+        guard let apidata = try? Data(contentsOf: apiURL) else { return }
         
         let log = NSString(data: apidata, encoding: String.Encoding.utf8.rawValue) ?? "데이터가 없습니다"
         NSLog("API Result=\( log )")
         
         do {
-            guard let apiDictionary = try JSONSerialization.jsonObject(with: apidata, options: []) as? Array<[String: Any]> else {
+            guard let apiDictionary = try JSONSerialization.jsonObject(with: apidata, options: [])
+                as? Array<[String: Any]> else {
                 print("nil")
                 return
             }
@@ -34,6 +33,7 @@ class DataStore {
                 data.thumb_image_url = dic["thumb_image_url"] as? String
                 data.image_url = dic["image_url"] as? String
                 data.image_title = dic["image_title"] as? String
+                data.image_desc = dic["image_desc"] as? String
                 self.list.append(data)
             }
         } catch {

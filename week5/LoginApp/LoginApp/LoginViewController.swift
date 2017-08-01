@@ -9,7 +9,6 @@
 import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-    
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     
@@ -39,13 +38,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func tryLogin(_ sender: UIButton) {
-        guard let email = emailTextField.text else {
-            return
-        }
+        guard let email = emailTextField.text else { return }
         
-        guard let password = passwordTextField.text else {
-            return
-        }
+        guard let password = passwordTextField.text else { return }
         
         DispatchQueue.main.async {
             self.imageBoardAPI.loginInfoSendToServer(email: email, password: password)
