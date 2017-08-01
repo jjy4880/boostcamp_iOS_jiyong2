@@ -15,8 +15,7 @@ struct ImageBoardAPI {
         let body: [String: String] = ["email": email, "password": password]
         tryLogin(path: url, body: body)
     }
-    
-    
+
     func userInfoSendtoServer(email: String, nickname: String, password: String) {
         let url = "https://ios-api.boostcamp.connect.or.kr/user"
         let body: [String: String] = ["email": email, "nickname": nickname, "password": password]
@@ -24,7 +23,7 @@ struct ImageBoardAPI {
         
     }
     
-    func tryLogin(path: String, body: [String: Any]) {
+    private func tryLogin(path: String, body: [String: Any]) {
         var request = URLRequest(url: URL(string: path)!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -34,12 +33,10 @@ struct ImageBoardAPI {
             request.httpBody = jsonBody
             
             let session = URLSession.shared
-            
             let task = session.dataTask(with: request, completionHandler: {data, response, error -> Void in
                 if let httpResponse = response as? HTTPURLResponse {
                     print("statusCode: \(httpResponse.statusCode)")
                     print("\(HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode))")
-                    
                     }
             })
             task.resume()
@@ -50,18 +47,13 @@ struct ImageBoardAPI {
     
     private func userLoginHTTPrequest(path: String, body: [String: Any]) {
         var request = URLRequest(url: URL(string: path)!)
-        //print(request)
-        
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         do {
             let jsonBody = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
             request.httpBody = jsonBody
-            
             let session = URLSession.shared
-            
             let task = session.dataTask(with: request, completionHandler: {data, response, error -> Void in
                 if let httpResponse = response as? HTTPURLResponse {
                     print("statusCode: \(httpResponse.statusCode)")

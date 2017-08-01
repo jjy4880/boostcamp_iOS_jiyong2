@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE778AD71F304BA90049AED4 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE778AD61F304BA90049AED4 /* CollectionView.swift */; };
+		CE778AD91F304DB30049AED4 /* CollecionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE778AD81F304DB30049AED4 /* CollecionViewCell.swift */; };
 		CE7901DF1F2E4172009B9254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7901DE1F2E4172009B9254 /* AppDelegate.swift */; };
 		CE7901E41F2E4172009B9254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7901E21F2E4172009B9254 /* Main.storyboard */; };
 		CE7901E71F2E4172009B9254 /* LoginApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE7901E51F2E4172009B9254 /* LoginApp.xcdatamodeld */; };
@@ -16,12 +18,16 @@
 		CE7901F81F2E4CC8009B9254 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7901F71F2E4CC8009B9254 /* LoginViewController.swift */; };
 		CE7901FA1F2E51B4009B9254 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7901F91F2E51B4009B9254 /* SignUpViewController.swift */; };
 		CE7901FC1F2EDEDE009B9254 /* ImageboardAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7901FB1F2EDEDD009B9254 /* ImageboardAPI.swift */; };
+		CEBFCCF41F306C4D00BBFB08 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBFCCF31F306C4D00BBFB08 /* BoardViewController.swift */; };
+		CEBFCCF91F3073AF00BBFB08 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBFCCF81F3073AF00BBFB08 /* DataStore.swift */; };
 		CED010691F2FA21500B6CBBD /* BoardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED010681F2FA21500B6CBBD /* BoardData.swift */; };
 		CED0106B1F2FA30400B6CBBD /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED0106A1F2FA30400B6CBBD /* TableViewCell.swift */; };
 		CEF621AA1F2F48AF00B2DCB0 /* TableViewSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF621A91F2F48AF00B2DCB0 /* TableViewSettingController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE778AD61F304BA90049AED4 /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		CE778AD81F304DB30049AED4 /* CollecionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollecionViewCell.swift; sourceTree = "<group>"; };
 		CE7901DB1F2E4172009B9254 /* LoginApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7901DE1F2E4172009B9254 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7901E31F2E4172009B9254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,6 +39,8 @@
 		CE7901F71F2E4CC8009B9254 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE7901F91F2E51B4009B9254 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CE7901FB1F2EDEDD009B9254 /* ImageboardAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageboardAPI.swift; sourceTree = "<group>"; };
+		CEBFCCF31F306C4D00BBFB08 /* BoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
+		CEBFCCF81F3073AF00BBFB08 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		CED010681F2FA21500B6CBBD /* BoardData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardData.swift; sourceTree = "<group>"; };
 		CED0106A1F2FA30400B6CBBD /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CEF621A91F2F48AF00B2DCB0 /* TableViewSettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSettingController.swift; sourceTree = "<group>"; };
@@ -68,21 +76,49 @@
 		CE7901DD1F2E4172009B9254 /* LoginApp */ = {
 			isa = PBXGroup;
 			children = (
+				CEBFCCF71F3071EC00BBFB08 /* CollectionView */,
+				CEBFCCF61F3071D700BBFB08 /* LoginView */,
+				CEBFCCF51F3071B400BBFB08 /* TableView */,
 				CE7901DE1F2E4172009B9254 /* AppDelegate.swift */,
-				CE7901F71F2E4CC8009B9254 /* LoginViewController.swift */,
-				CE7901F91F2E51B4009B9254 /* SignUpViewController.swift */,
 				CE7901FB1F2EDEDD009B9254 /* ImageboardAPI.swift */,
-				CEF621A91F2F48AF00B2DCB0 /* TableViewSettingController.swift */,
-				CED0106A1F2FA30400B6CBBD /* TableViewCell.swift */,
-				CE7901E21F2E4172009B9254 /* Main.storyboard */,
-				CE7901E81F2E4172009B9254 /* Assets.xcassets */,
 				CED010681F2FA21500B6CBBD /* BoardData.swift */,
+				CEBFCCF81F3073AF00BBFB08 /* DataStore.swift */,
+				CE7901E21F2E4172009B9254 /* Main.storyboard */,
 				CE7901F51F2E4332009B9254 /* boostcamp1.png */,
 				CE7901EA1F2E4172009B9254 /* LaunchScreen.storyboard */,
 				CE7901ED1F2E4172009B9254 /* Info.plist */,
 				CE7901E51F2E4172009B9254 /* LoginApp.xcdatamodeld */,
+				CE7901E81F2E4172009B9254 /* Assets.xcassets */,
 			);
 			path = LoginApp;
+			sourceTree = "<group>";
+		};
+		CEBFCCF51F3071B400BBFB08 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				CEF621A91F2F48AF00B2DCB0 /* TableViewSettingController.swift */,
+				CED0106A1F2FA30400B6CBBD /* TableViewCell.swift */,
+				CEBFCCF31F306C4D00BBFB08 /* BoardViewController.swift */,
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
+		CEBFCCF61F3071D700BBFB08 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				CE7901F71F2E4CC8009B9254 /* LoginViewController.swift */,
+				CE7901F91F2E51B4009B9254 /* SignUpViewController.swift */,
+			);
+			name = LoginView;
+			sourceTree = "<group>";
+		};
+		CEBFCCF71F3071EC00BBFB08 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				CE778AD61F304BA90049AED4 /* CollectionView.swift */,
+				CE778AD81F304DB30049AED4 /* CollecionViewCell.swift */,
+			);
+			name = CollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,10 +195,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE778AD71F304BA90049AED4 /* CollectionView.swift in Sources */,
+				CEBFCCF91F3073AF00BBFB08 /* DataStore.swift in Sources */,
+				CE778AD91F304DB30049AED4 /* CollecionViewCell.swift in Sources */,
 				CE7901F81F2E4CC8009B9254 /* LoginViewController.swift in Sources */,
 				CED0106B1F2FA30400B6CBBD /* TableViewCell.swift in Sources */,
 				CED010691F2FA21500B6CBBD /* BoardData.swift in Sources */,
 				CE7901E71F2E4172009B9254 /* LoginApp.xcdatamodeld in Sources */,
+				CEBFCCF41F306C4D00BBFB08 /* BoardViewController.swift in Sources */,
 				CE7901FC1F2EDEDE009B9254 /* ImageboardAPI.swift in Sources */,
 				CE7901FA1F2E51B4009B9254 /* SignUpViewController.swift in Sources */,
 				CEF621AA1F2F48AF00B2DCB0 /* TableViewSettingController.swift in Sources */,

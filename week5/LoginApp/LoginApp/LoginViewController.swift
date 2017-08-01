@@ -25,7 +25,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.becomeFirstResponder()
     }
     
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.isEqual(emailTextField) {
             self.passwordTextField.becomeFirstResponder()
@@ -51,5 +50,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         DispatchQueue.main.async {
             self.imageBoardAPI.loginInfoSendToServer(email: email, password: password)
         }
+        
+        self.dismiss(animated: true, completion: nil)
     }
 }
