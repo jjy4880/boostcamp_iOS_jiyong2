@@ -10,7 +10,7 @@ import Foundation
 
 class BoardData {
     var id: String?
-    var created_at: Int?
+    var created_at: String?
     var thumb_image_url: String?
     var image_url: String?
     var author_nickname: String?

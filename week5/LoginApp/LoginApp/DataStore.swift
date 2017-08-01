@@ -10,6 +10,14 @@ import UIKit
 class DataStore {
     var list = [BoardData]()
     
+    let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy 'at' HH:mm:ss a"
+        
+        return dateFormatter
+    }()
+
+    
     func getAPIDtata() {
         let url = "https://ios-api.boostcamp.connect.or.kr/"
         let apiURL : URL! = URL(string: url)
@@ -28,7 +36,9 @@ class DataStore {
             for dic in apiDictionary {
                 let data = BoardData()
                 data.id = dic["id"] as? String
-                data.created_at = dic["created_at"] as? Int
+                data.created_at = dateFormatter.string(from:
+                    Date(timeIntervalSince1970: dic["created_at"] as! TimeInterval))
+                
                 data.author_nickname = dic["author_nickname"] as? String
                 data.thumb_image_url = dic["thumb_image_url"] as? String
                 data.image_url = dic["image_url"] as? String

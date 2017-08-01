@@ -29,7 +29,7 @@ class CollectionView: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         let row = dataStore.list[indexPath.row]
         cell.titleLabel.text = row.image_title
-        cell.dateLabel.text = "\(row.created_at!)"
+        cell.dateLabel.text = row.created_at
         cell.nicknameLabel.text = row.author_nickname
         
         let imageURL = "https://ios-api.boostcamp.connect.or.kr\(row.thumb_image_url!)"

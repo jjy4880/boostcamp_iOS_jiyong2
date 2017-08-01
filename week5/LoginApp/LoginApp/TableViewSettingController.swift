@@ -43,7 +43,7 @@ class TableViewSettingContvarler: UITableViewController {
         
         cell.title.text = row.image_title
         cell.author.text = row.author_nickname
-        cell.currentDate.text = "\(row.created_at ?? 0)"
+        cell.currentDate.text = row.created_at
         let imageURL = "https://ios-api.boostcamp.connect.or.kr\(row.thumb_image_url!)"
         
         guard let url = URL(string: imageURL) else { return cell }

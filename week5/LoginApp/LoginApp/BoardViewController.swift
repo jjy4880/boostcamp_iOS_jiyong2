@@ -13,8 +13,8 @@ class BoardViewController: UIViewController {
     @IBOutlet var nicknameLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
-    
     @IBOutlet var navigationBarTitle: UINavigationItem!
+    
     var data = BoardData()
     
     override func viewDidLoad() {

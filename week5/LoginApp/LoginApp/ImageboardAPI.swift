@@ -19,7 +19,6 @@ struct ImageBoardAPI {
         let url = "https://ios-api.boostcamp.connect.or.kr/user"
         let body: [String: String] = ["email": email, "nickname": nickname, "password": password]
         userLoginHTTPrequest(path: url, body: body)
-        
     }
     
     private func tryLogin(path: String, body: [String: Any]) {
