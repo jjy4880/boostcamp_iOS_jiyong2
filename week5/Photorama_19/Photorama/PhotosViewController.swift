@@ -42,6 +42,6 @@ class PhotosViewController: UIViewController {
             case let .failure(error):
                 print("Error fetching recent photos: \(error)")
             }
-        } // fetchRecentPotos()
-    } // vieDidLoad
+        }
+    }
 }

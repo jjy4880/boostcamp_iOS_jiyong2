@@ -18,10 +18,7 @@ enum PhotoError: Error {
 }
 
 class PhotoStore {
-    let session: URLSession = {
-        let config = URLSessionConfiguration.default
-        return URLSession(configuration: config)
-    }()
+    let session: URLSession = URLSession(configuration: .default)
     
     func fetchRecentPhotos(completion: @escaping (PhotosResult) -> Void) {
         let url = FlickrAPI.recentPhotoURL()
@@ -42,9 +39,11 @@ class PhotoStore {
         task.resume()
     }
     
+    // 이중바인딩 , preconditionFailure
     func processRecentPhotosRequest(data: Data?, error: Error?) -> PhotosResult {
         guard let jsonData = data else {
-            return .failure(error!)
+            guard let error2 = error else { preconditionFailure() }
+            return .failure(error2)
         }
         return FlickrAPI.photosFromJSONData(data: jsonData)
     }

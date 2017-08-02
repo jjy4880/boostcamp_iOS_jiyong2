@@ -31,33 +31,31 @@ struct FlickrAPI {
         return formatter
     }()
     
-    private static func flickrURL(method: Method,
-                                  parameters: [String: String]?) -> URL? {
+    private static func flickrURL(method: Method, parameters: [String: String]?) -> URL? {
+        let components = NSURLComponents(string: baseURLString)
+        var queryItems = [NSURLQueryItem]()
         
-                                let components = NSURLComponents(string: baseURLString)
-                                var queryItems = [NSURLQueryItem]()
+        let baseParams = [
+            "method": method.rawValue,
+            "format": "json",
+            "nojsoncallback": "1",
+            "api_key": APIKey
+        ]
         
-                                let baseParams = [
-                                    "method": method.rawValue,
-                                    "format": "json",
-                                    "nojsoncallback": "1",
-                                    "api_key": APIKey
-                                ]
+        for (key, value) in baseParams {
+            let item = NSURLQueryItem(name: key, value: value)
+            queryItems.append(item)
+        }
         
-                                for (key, value) in baseParams {
-                                    let item = NSURLQueryItem(name: key, value: value)
-                                    queryItems.append(item)
-                                }
+        if let additionalParams = parameters {
+            for (key, value) in additionalParams {
+                let item = NSURLQueryItem(name: key, value: value)
+                queryItems.append(item)
+            }
+        }
+        components?.queryItems = queryItems as [URLQueryItem]
         
-                                if let additionalParams = parameters {
-                                    for (key, value) in additionalParams {
-                                        let item = NSURLQueryItem(name: key, value: value)
-                                        queryItems.append(item)
-                                    }
-                                }
-                                components?.queryItems = queryItems as [URLQueryItem]
-        
-                    return  components?.url
+        return  components?.url
     }
     
     static func recentPhotoURL() -> URL {
@@ -69,17 +67,18 @@ struct FlickrAPI {
         do {
             let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: [])
             guard let jsonDictionary = jsonObject as? [String: Any],
-                  let photos = jsonDictionary["photos"] as? [String: AnyObject],
-                  let photosArray = photos["photo"] as? [[String: Any]] else {
+                let photos = jsonDictionary["photos"] as? [String: AnyObject],
+                let photosArray = photos["photo"] as? [[String: Any]] else {
                     
                     return .failure(FlickrError.invalidJSONData)
             }
             
             var finalPhotos = [Photo]()
             
+            // flatMap 사용하여 if let 구문생략
             photosArray.forEach { photojson in
-                if let photo = photoFromJSONObject(json: photojson) {
-                    finalPhotos.append(photo)
+                photoFromJSONObject(json: photojson).flatMap {
+                    finalPhotos.append($0)
                 }
             }
             
@@ -92,13 +91,13 @@ struct FlickrAPI {
         }
     }
     
-     static func photoFromJSONObject(json: [String: Any]) -> Photo? {
+    static func photoFromJSONObject(json: [String: Any]) -> Photo? {
         guard let photoID = json["id"] as? String,
-              let title = json["title"] as? String,
-              let dateString = json["datetaken"] as? String,
-              let photoURLString = json["url_h"] as? String,
-              let url = URL(string: photoURLString),
-              let dateTaken = dateFormatter.date(from: dateString) else {
+            let title = json["title"] as? String,
+            let dateString = json["datetaken"] as? String,
+            let photoURLString = json["url_h"] as? String,
+            let url = URL(string: photoURLString),
+            let dateTaken = dateFormatter.date(from: dateString) else {
                 return nil
         }
         return Photo(title: title, photoID: photoID, remoteURL: url, dateTaken: dateTaken)
