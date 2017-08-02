@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CollectionView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet var collectionView: UICollectionView!
     
     var dataStore = DataStore()
@@ -31,9 +31,9 @@ class CollectionView: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.titleLabel.text = row.image_title
         cell.dateLabel.text = row.created_at
         cell.nicknameLabel.text = row.author_nickname
+        guard let thumb_image_url = row.thumb_image_url else { return cell }
         
-        let imageURL = "https://ios-api.boostcamp.connect.or.kr\(row.thumb_image_url!)"
-        
+        let imageURL = "https://ios-api.boostcamp.connect.or.kr\(thumb_image_url)"
         guard let url = URL(string: imageURL) else { return cell }
         
         do {
@@ -46,7 +46,7 @@ class CollectionView: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width / 2 - 8
+        let width = collectionView.frame.width / 2 - 2
         return CGSize(width: width, height: width * 1.5)
     }
 }

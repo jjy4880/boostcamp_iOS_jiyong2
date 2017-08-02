@@ -183,12 +183,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="216-Fq-Xcg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="634" y="938"/>
+            <point key="canvasLocation" x="905" y="938"/>
         </scene>
         <!--TABLE-->
         <scene sceneID="xfo-Zm-W9p">
             <objects>
-                <tableViewController id="WVV-wc-s7y" customClass="TableViewSettingContvarler" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="WVV-wc-s7y" customClass="TableViewSettingController" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="bAO-xM-O5d">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -279,7 +279,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sr7-GY-lIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2678" y="963"/>
+            <point key="canvasLocation" x="2310" y="938"/>
         </scene>
         <!--Board View Controller-->
         <scene sceneID="ByL-ru-rE6">
@@ -359,12 +359,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ata-1w-w8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3633" y="963"/>
+            <point key="canvasLocation" x="3039" y="938"/>
         </scene>
         <!--Collection-->
         <scene sceneID="EWs-Xk-C9Z">
             <objects>
-                <viewController id="Vkp-39-BVL" customClass="CollectionView" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vkp-39-BVL" customClass="CollectionViewController" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cBN-oQ-2io"/>
                         <viewControllerLayoutGuide type="bottom" id="bWK-WV-cmR"/>
@@ -469,12 +469,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2QT-ts-4du" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2679" y="1836"/>
+            <point key="canvasLocation" x="1588" y="1667"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Board Data View Controller-->
         <scene sceneID="jMd-hP-NZi">
             <objects>
-                <viewController id="m1V-Bs-vKV" sceneMemberID="viewController">
+                <viewController id="m1V-Bs-vKV" customClass="AddBoardDataViewController" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="J7s-eP-OgI"/>
                         <viewControllerLayoutGuide type="bottom" id="moi-q3-eaf"/>
@@ -482,12 +482,83 @@
                     <view key="view" contentMode="scaleToFill" id="F2x-cI-hhV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ng1-wh-2GY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="IoU-9h-tQ9"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem id="bf2-DF-ksF">
+                                        <nil key="title"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="fY0-Yg-948">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="m1V-Bs-vKV" id="yUD-0M-Q40"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Image Title" textAlignment="center" minimumFontSize="17" id="Vfo-yw-TnO">
+                                            <rect key="frame" x="112" y="23" width="151" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="OcL-nH-uyD">
+                                            <connections>
+                                                <action selector="upLoadDataToServer:" destination="m1V-Bs-vKV" id="QUe-PJ-RvD"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sAa-lc-CyY">
+                                <rect key="frame" x="0.0" y="269" width="375" height="207"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="207" id="wfF-dy-ZD6"/>
+                                </constraints>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                            </textView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cOt-R1-srW">
+                                <rect key="frame" x="0.0" y="60" width="375" height="213"/>
+                                <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Vfc-a9-1Eb" appends="YES" id="KzA-0L-aDg"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ng1-wh-2GY" secondAttribute="trailing" id="2Uq-dr-ja9"/>
+                            <constraint firstItem="cOt-R1-srW" firstAttribute="top" secondItem="ng1-wh-2GY" secondAttribute="bottom" id="369-0R-9Z6"/>
+                            <constraint firstItem="cOt-R1-srW" firstAttribute="leading" secondItem="sAa-lc-CyY" secondAttribute="leading" id="6Sd-J3-Hdf"/>
+                            <constraint firstItem="cOt-R1-srW" firstAttribute="trailing" secondItem="sAa-lc-CyY" secondAttribute="trailing" id="KBk-KR-sjV"/>
+                            <constraint firstAttribute="trailing" secondItem="cOt-R1-srW" secondAttribute="trailing" id="Pfk-z1-o0Z"/>
+                            <constraint firstItem="ng1-wh-2GY" firstAttribute="leading" secondItem="F2x-cI-hhV" secondAttribute="leading" id="QFy-Zg-JYX"/>
+                            <constraint firstItem="moi-q3-eaf" firstAttribute="top" secondItem="cOt-R1-srW" secondAttribute="bottom" constant="394" id="Zr2-3H-don"/>
+                            <constraint firstItem="cOt-R1-srW" firstAttribute="top" secondItem="ng1-wh-2GY" secondAttribute="bottom" id="etz-Hc-EVH"/>
+                            <constraint firstItem="cOt-R1-srW" firstAttribute="leading" secondItem="F2x-cI-hhV" secondAttribute="leading" id="iZU-xW-ddX"/>
+                            <constraint firstItem="moi-q3-eaf" firstAttribute="top" secondItem="sAa-lc-CyY" secondAttribute="bottom" constant="191" id="jJQ-sS-6Gq"/>
+                            <constraint firstItem="ng1-wh-2GY" firstAttribute="top" secondItem="F2x-cI-hhV" secondAttribute="top" id="uTu-PG-Hi4"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageDescriptionTextView" destination="sAa-lc-CyY" id="OL0-TH-gql"/>
+                        <outlet property="imageTitleTextField" destination="Vfo-yw-TnO" id="vAp-sr-cfj"/>
+                        <outlet property="imageView" destination="cOt-R1-srW" id="qAq-Ow-Wd1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B4I-3Q-R82" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Vfc-a9-1Eb">
+                    <connections>
+                        <action selector="tapAlbumImagePicker:" destination="m1V-Bs-vKV" id="isB-ri-5ai"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3633" y="1836"/>
+            <point key="canvasLocation" x="2310" y="1666"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="NTw-g5-pRP">

@@ -16,11 +16,10 @@ class DataStore {
         
         return dateFormatter
     }()
-
     
     func getAPIDtata() {
         let url = "https://ios-api.boostcamp.connect.or.kr/"
-        let apiURL : URL! = URL(string: url)
+        guard let apiURL = URL(string: url) else { return }
         guard let apidata = try? Data(contentsOf: apiURL) else { return }
         
         let log = NSString(data: apidata, encoding: String.Encoding.utf8.rawValue) ?? "데이터가 없습니다"
@@ -35,10 +34,11 @@ class DataStore {
             
             for dic in apiDictionary {
                 let data = BoardData()
-                data.id = dic["id"] as? String
-                data.created_at = dateFormatter.string(from:
-                    Date(timeIntervalSince1970: dic["created_at"] as! TimeInterval))
+                guard let timeInterval = dic["created_at"] as? Int else { return }
+                let dateTime = Date(timeIntervalSince1970: TimeInterval(timeInterval))
                 
+                data.id = dic["id"] as? String
+                data.created_at = dateFormatter.string(from: dateTime)
                 data.author_nickname = dic["author_nickname"] as? String
                 data.thumb_image_url = dic["thumb_image_url"] as? String
                 data.image_url = dic["image_url"] as? String

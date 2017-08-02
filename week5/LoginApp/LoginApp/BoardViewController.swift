@@ -21,8 +21,10 @@ class BoardViewController: UIViewController {
         super.viewDidLoad()
         
         navigationBarTitle.title = data.image_title
-        let imageURL = "https://ios-api.boostcamp.connect.or.kr\(data.image_url!)"
+        guard let image_url = data.image_url else { return }
+        let imageURL = "https://ios-api.boostcamp.connect.or.kr\(image_url)"
         guard let url = URL(string: imageURL) else { return }
+        guard let currentTime = data.created_at else { return }
         
         do {
             let image = try Data(contentsOf: url)
@@ -31,7 +33,7 @@ class BoardViewController: UIViewController {
             print(error)
         }
 
-        timeLabel.text = "\(data.created_at!)"
+        timeLabel.text = "\(currentTime)"
         nicknameLabel.text = data.author_nickname
         titleLabel.text = data.image_desc
     }

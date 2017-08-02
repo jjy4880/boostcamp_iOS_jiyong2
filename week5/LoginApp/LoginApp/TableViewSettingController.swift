@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewSettingContvarler: UITableViewController {
+class TableViewSettingController: UITableViewController {
     @IBOutlet var tableViewTest: UITableView!
     
     var dataStore = DataStore()
@@ -44,8 +44,9 @@ class TableViewSettingContvarler: UITableViewController {
         cell.title.text = row.image_title
         cell.author.text = row.author_nickname
         cell.currentDate.text = row.created_at
-        let imageURL = "https://ios-api.boostcamp.connect.or.kr\(row.thumb_image_url!)"
         
+        guard let thumbImage = row.thumb_image_url else { return cell }
+        let imageURL = "https://ios-api.boostcamp.connect.or.kr\(thumbImage)"
         guard let url = URL(string: imageURL) else { return cell }
         
         do {

@@ -39,10 +39,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func tryLogin(_ sender: UIButton) {
         guard let email = emailTextField.text else { return }
-        
         guard let password = passwordTextField.text else { return }
-        
-        DispatchQueue.main.async {
+    
+        DispatchQueue.global().async {
             self.imageBoardAPI.loginInfoSendToServer(email: email, password: password)
         }
         

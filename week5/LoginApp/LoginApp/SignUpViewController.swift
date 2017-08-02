@@ -18,21 +18,10 @@ class SignUpViewController: UIViewController {
     let imageBoardAPI = ImageBoardAPI()
 
     @IBAction func signupButtonPress(_ sender: UIButton) {
-        guard let email = emailTextField.text else {
-            return
-        }
-        
-        guard let nickname = nicknameTextField.text else {
-            return
-        }
-        
-        guard let password = passwordTextField.text else {
-            return
-        }
-        
-        guard let passwordCheck = passwordCheckTextField.text else {
-            return
-        }
+        guard let email = emailTextField.text else { return }
+        guard let nickname = nicknameTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let passwordCheck = passwordCheckTextField.text else { return }
         
         guard !email.isEmpty,
             !nickname.isEmpty,

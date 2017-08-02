@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE44D0861F30EB1E00295131 /* AddBoardDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE44D0851F30EB1D00295131 /* AddBoardDataViewController.swift */; };
 		CE778AD71F304BA90049AED4 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE778AD61F304BA90049AED4 /* CollectionView.swift */; };
 		CE778AD91F304DB30049AED4 /* CollecionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE778AD81F304DB30049AED4 /* CollecionViewCell.swift */; };
 		CE7901DF1F2E4172009B9254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7901DE1F2E4172009B9254 /* AppDelegate.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE44D0851F30EB1D00295131 /* AddBoardDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBoardDataViewController.swift; sourceTree = "<group>"; };
 		CE778AD61F304BA90049AED4 /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		CE778AD81F304DB30049AED4 /* CollecionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollecionViewCell.swift; sourceTree = "<group>"; };
 		CE7901DB1F2E4172009B9254 /* LoginApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE44D0841F30EB0300295131 /* AddBoardData */ = {
+			isa = PBXGroup;
+			children = (
+				CE44D0851F30EB1D00295131 /* AddBoardDataViewController.swift */,
+			);
+			name = AddBoardData;
+			sourceTree = "<group>";
+		};
 		CE7901D21F2E4172009B9254 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +86,7 @@
 		CE7901DD1F2E4172009B9254 /* LoginApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE44D0841F30EB0300295131 /* AddBoardData */,
 				CEBFCCF71F3071EC00BBFB08 /* CollectionView */,
 				CEBFCCF61F3071D700BBFB08 /* LoginView */,
 				CEBFCCF51F3071B400BBFB08 /* TableView */,
@@ -202,6 +213,7 @@
 				CED0106B1F2FA30400B6CBBD /* TableViewCell.swift in Sources */,
 				CED010691F2FA21500B6CBBD /* BoardData.swift in Sources */,
 				CE7901E71F2E4172009B9254 /* LoginApp.xcdatamodeld in Sources */,
+				CE44D0861F30EB1E00295131 /* AddBoardDataViewController.swift in Sources */,
 				CEBFCCF41F306C4D00BBFB08 /* BoardViewController.swift in Sources */,
 				CE7901FC1F2EDEDE009B9254 /* ImageboardAPI.swift in Sources */,
 				CE7901FA1F2E51B4009B9254 /* SignUpViewController.swift in Sources */,

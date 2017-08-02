@@ -20,9 +20,10 @@ struct ImageBoardAPI {
         let body: [String: String] = ["email": email, "nickname": nickname, "password": password]
         userLoginHTTPrequest(path: url, body: body)
     }
-    
+
     private func tryLogin(path: String, body: [String: Any]) {
-        var request = URLRequest(url: URL(string: path)!)
+        guard let  path = URL(string: path) else { return }
+        var request = URLRequest(url: path)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -44,7 +45,8 @@ struct ImageBoardAPI {
     }
     
     private func userLoginHTTPrequest(path: String, body: [String: Any]) {
-        var request = URLRequest(url: URL(string: path)!)
+        guard let  path = URL(string: path) else { return }
+        var request = URLRequest(url: path)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
