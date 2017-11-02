@@ -7,3 +7,5 @@
 
 ## Team Repository
 > [5InQueue] (https://github.com/bluelocate/boostcamp_iOS_5InQueue)
+
+jjy48801@naver.com
